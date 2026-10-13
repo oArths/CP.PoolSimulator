@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-blue: #0873a6;
+  --color-cp-life-cyan: #27c2df;
+  --color-deep-blue: #07557d;
+  --color-aqua-light: #ddf7fb;
+  --color-off-white: #f7fafc;
+  --color-graphite: #1f2937;
+  --color-neutral-gray: #667085;
+  --color-border-gray: #e4e7ec;
+
+  --font-inter: "Inter", sans-serif;
+
+  /* Display */
+  --text-display: 4rem;
+  --text-display--line-height: 4.5rem;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 800;
+
+  /* Headings */
+  --text-heading-xl: 3rem;
+  --text-heading-xl--line-height: 3.5rem;
+  --text-heading-xl--letter-spacing: -0.015em;
+  --text-heading-xl--font-weight: 700;
+
+  --text-heading-lg: 2.25rem;
+  --text-heading-lg--line-height: 2.75rem;
+  --text-heading-lg--letter-spacing: -0.01em;
+  --text-heading-lg--font-weight: 700;
+
+  --text-heading-md: 1.75rem;
+  --text-heading-md--line-height: 2.25rem;
+  --text-heading-md--letter-spacing: -0.005em;
+  --text-heading-md--font-weight: 600;
+
+  --text-heading-lg: 0.9375rem;
+  --text-heading-lg--line-height: 1.25rem;
+  --text-heading-lg--letter-spacing: 0em;
+  --text-heading-lg--font-weight: 600;
+
+  /* Body */
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.75rem;
+  --text-body-lg--font-weight: 400;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.5rem;
+  --text-body--font-weight: 400;
+
+  /* Small text */
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.25rem;
+  --text-body-sm--font-weight: 400;
+
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1rem;
+  --text-caption--letter-spacing: 0.005em;
+  --text-caption--font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@layer components {
+  .button-outline,
+  .button-primary {
+    @apply rounded-xl px-5 py-3.5 gap-2 w-fit  text-heading-lg cursor-pointer;
+  }
+  .button-outline {
+    @apply text-primary-blue border border-primary-blue;
+  }
+  .button-primary {
+    @apply bg-primary-blue text-white ;
+  }
+}
