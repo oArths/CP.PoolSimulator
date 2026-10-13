@@ -1,0 +1,82 @@
+[
+    {
+        "formats": [
+            {
+                "imagePath": "RectangleIcon.svg",
+                "name": "Retangular"
+            },
+            {
+                "imagePath": "RomavaIcon.svg",
+                "name": "Romana"
+            },
+            {
+                "imagePath": "EllipseIcon.svg",
+                "name": "Oval"
+            },
+            {
+                "imagePath": "RimIcon.svg",
+                "name": "Rim"
+            },
+            {
+                "imagePath": "LIcon.svg",
+                "name": "L"
+            }
+        ],
+        "surrounded": [
+            {
+                "type": "Cerca em Alumínio",
+                "description": "Cerca com postes em alumínio."
+            },
+            {
+                "type": "Alumínio + Inox",
+                "description": "Cerca com alumínio e inox."
+            }
+        ],
+        "gates": [
+            {
+                "type": "Portão manual",
+                "image": "square"
+            },
+            {
+                "type": "Portão automático",
+                "image": "square"
+            }
+        ],
+        "deck": [
+            {
+                "name": "Pedra natural",
+                "imagePath": "amostraPedraNatural.png"
+            },
+            {
+                "name": "Madeira",
+                "imagePath": "amostraMadeira.png"
+            },
+            {
+                "name": "Cerâmica",
+                "imagePath": "amostraCeramica.png"
+            },
+            {
+                "name": "Cimento",
+                "imagePath": "amostraCimento.png"
+            }
+        ],
+        "display": [
+            {
+                "color": "Grafite",
+                "imagePath": "amostraGrafite.png"
+            },
+            {
+                "color": "Cinza",
+                "imagePath": "amostraCinza.png"
+            },
+            {
+                "color": "Areia",
+                "imagePath": "amostraAreia.png"
+            },
+            {
+                "color": "Branco",
+                "imagePath": "amostraBranco.png"
+            }
+        ]
+    }
+]
