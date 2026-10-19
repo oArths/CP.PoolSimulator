@@ -13,7 +13,7 @@ interface PoolGate {
     image: string;
 }
 
-interface PoolDeck {
+interface PoolDeck {    
     name: string;
     imagePath: string;
 }
