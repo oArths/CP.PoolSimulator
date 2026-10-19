@@ -6,7 +6,7 @@ Single Next.js 16 (App Router) app in `frontend/` — root has no code. Run all 
 
 - `npm run dev` — dev server (Turbopack). Also (re)writes `frontend/AGENTS.md`; commit that block instead of deleting it.
 - `npm run lint` — bare `eslint` (flat config, `eslint.config.mjs`). Warnings don't fail; only errors do.
-- `npx tsc --noEmit` — typecheck. **Known to fail with 4 pre-existing TS2367 errors** in `app/components/PoolSimulator/index.tsx` (stepper compares `active === "2"` while `active` is `const "1"`). Don't count these as your regression. No test runner exists.
+- `npx tsc --noEmit` — typecheck; currently clean. No test runner exists.
 
 ## Next.js 16 differs from older Next
 
