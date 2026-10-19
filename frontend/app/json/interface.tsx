@@ -1,5 +1,5 @@
 interface PoolFormat {
-    imagePath: string;
+    component: string;
     name: string;
 }
 

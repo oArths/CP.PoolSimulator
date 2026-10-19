@@ -2,23 +2,23 @@
     {
         "formats": [
             {
-                "imagePath": "RectangleIcon.svg",
+                "component": "RectanglePoolFormat",
                 "name": "Retangular"
             },
             {
-                "imagePath": "RomavaIcon.svg",
+                "component": "RomanaPoolFormat",
                 "name": "Romana"
             },
             {
-                "imagePath": "EllipseIcon.svg",
+                "component": "EllipesePoolFormat",
                 "name": "Oval"
             },
             {
-                "imagePath": "RimIcon.svg",
+                "component": "RimPoolFormat",
                 "name": "Rim"
             },
             {
-                "imagePath": "LIcon.svg",
+                "component": "LPoolFormat",
                 "name": "L"
             }
         ],
