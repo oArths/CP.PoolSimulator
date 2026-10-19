@@ -35,11 +35,11 @@
         "gates": [
             {
                 "type": "Portão manual",
-                "image": "square"
+                "component": "RectanglePoolFormat"
             },
             {
                 "type": "Portão automático",
-                "image": "square"
+                "component": "RectanglePoolFormat"
             }
         ],
         "deck": [

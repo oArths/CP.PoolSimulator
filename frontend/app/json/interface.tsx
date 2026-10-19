@@ -10,7 +10,7 @@ interface PoolSurrounded {
 
 interface PoolGate {
     type: string;
-    image: string;
+    component: string;
 }
 
 interface PoolDeck {    

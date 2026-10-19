@@ -73,7 +73,7 @@ h2,
 h3,
 h4,
 p,
-span {
+span, label {
   user-select: none;
 }
 @layer components {

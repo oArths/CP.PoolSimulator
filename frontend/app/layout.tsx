@@ -21,8 +21,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-br"
+      
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="icon" href="/imgs/logo.svg" type="image/png" />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

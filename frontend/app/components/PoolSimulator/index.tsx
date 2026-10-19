@@ -65,7 +65,9 @@ export default function PoolSimulator() {
     const heigth = usePoolStore((state) => state.heigth);
     const width = usePoolStore((state) => state.width);
     const measure = usePoolStore((state) => state.measure);
+    const gate = usePoolStore((state) => state.gate);
     const gap = usePoolStore((state) => state.gap);
+    const surrounded = usePoolStore((state) => state.surrounded);
     const actualStep = usePoolStore((state) => state.actualStep);
     const stepIndex = STEPS.indexOf(actualStep);
     const FormatIcon = format ? poolFormatComponents[format.component] : null;
@@ -85,7 +87,9 @@ export default function PoolSimulator() {
         const factor = next === "Centimetros" ? 100 : 0.01;
         const convert = (value: number) => {
             const scaled = value * factor;
-            return next === "Metros" ? Math.round(scaled * 100) / 100 : Math.round(scaled);
+            return next === "Metros"
+                ? Math.round(scaled * 100) / 100
+                : Math.round(scaled);
         };
         setField("width", convert(w));
         setField("heigth", convert(h));
@@ -96,7 +100,7 @@ export default function PoolSimulator() {
     return (
         <>
             <Home />
-            <section className="flex flex-col items-center justify-center w-11/12 h-fit gap-7 ">
+            <section className="flex flex-col items-center justify-center w-11/12 h-fit gap-7 mb-20 ">
                 <div className="flex flex-row gap-2.5 w-fit items-center py-5">
                     <div className="flex flex-row items-center gap-2 cursor-pointer ">
                         <div
@@ -187,7 +191,9 @@ export default function PoolSimulator() {
                                 <fieldset className="flex flex-col gap-4">
                                     <div className="flex flex-row justify-between gap-3">
                                         <span className="flex flex-col gap-1.5 w-full">
-                                            <label className="text-body-sm text-graphite">Comprimento</label>
+                                            <label className="text-body-sm text-graphite">
+                                                Comprimento
+                                            </label>
                                             <MeasureInput
                                                 value={w}
                                                 unit={measure}
@@ -195,7 +201,9 @@ export default function PoolSimulator() {
                                             />
                                         </span>
                                         <span className="flex flex-col gap-1.5 w-full">
-                                            <label className="text-body-sm text-graphite">Largura</label>
+                                            <label className="text-body-sm text-graphite">
+                                                Largura
+                                            </label>
                                             <MeasureInput
                                                 value={h}
                                                 unit={measure}
@@ -204,7 +212,9 @@ export default function PoolSimulator() {
                                         </span>
                                     </div>
                                     <span className="flex flex-col gap-1.5 w-full">
-                                        <label className="text-body-sm text-graphite">Distância da piscina até a cerca</label>
+                                        <label className="text-body-sm text-graphite">
+                                            Distância da piscina até a cerca
+                                        </label>
                                         <MeasureInput
                                             value={g}
                                             unit={measure}
@@ -212,16 +222,89 @@ export default function PoolSimulator() {
                                         />
                                     </span>
                                     <span className="flex flex-col gap-1.5 w-full">
-                                        <label className="text-body-sm text-graphite">Unidade de medida</label>
+                                        <label className="text-body-sm text-graphite">
+                                            Unidade de medida
+                                        </label>
                                         <div className="flex flex-row gap-2">
-                                            <p onClick={() => toggleMeasure("Metros")} className={`tag cursor-pointer ${measure === "Metros" && "bg-aqua-light border-cp-life-cyan text-primary-blue"}`}>
+                                            <p
+                                                onClick={() => toggleMeasure("Metros")}
+                                                className={`tag cursor-pointer ${measure === "Metros" && "bg-aqua-light border-cp-life-cyan text-primary-blue"}`}
+                                            >
                                                 Metros
                                             </p>
-                                            <p onClick={() => toggleMeasure("Centimetros")} className={`tag cursor-pointer ${measure === "Centimetros" && "bg-aqua-light border-cp-life-cyan text-primary-blue"}`}>
+                                            <p
+                                                onClick={() => toggleMeasure("Centimetros")}
+                                                className={`tag cursor-pointer ${measure === "Centimetros" && "bg-aqua-light border-cp-life-cyan text-primary-blue"}`}
+                                            >
                                                 Centímetros
                                             </p>
                                         </div>
                                     </span>
+                                </fieldset>
+                            </>
+                        )}
+                        {actualStep === "Produto" && (
+                            <>
+                                <span className="flex flex-col gap-4 w-full">
+                                    <h1 className="text-heading-md text-primary-blue">
+                                        Escolha seu produto
+                                    </h1>
+                                    <h2 className="text-body text-graphite">
+                                        Selecione o material da cerca e a opção de portão que deseja
+                                        incluir.
+                                    </h2>
+                                </span>
+                                <fieldset className="flex flex-col gap-4">
+                                    <label className="text-body-sm font-medium text-graphite">
+                                        Produto
+                                    </label>
+                                    {poolItems &&
+                                        poolItems[0].surrounded.map((item, index) => {
+                                            return (
+                                                <div
+                                                    key={index}
+                                                    onClick={() => setField("surrounded", item)}
+
+                                                    className={`flex flex-col items-start gap-2.5 justify-center w-full h-full rounded-2xl border-2 p-4  cursor-pointer hover:border-cp-life-cyan hover:bg-cp-life-cyan/10 ${item.type === surrounded?.type ? "border-cp-life-cyan bg-cp-life-cyan/10" : "border-border-gray "}`}
+                                                >
+                                                    <h2 className=" text-[22px] text-primary-blue font-semibold ">
+                                                        {item.type}
+                                                    </h2>
+                                                    <p className="text-body text-neutral-gray">
+                                                        {item.description}
+                                                    </p>
+                                                </div>
+                                            );
+                                        })}
+                                </fieldset>
+                                <fieldset className="flex flex-col gap-4">
+                                    <label className="text-body-sm font-medium text-graphite">
+                                        Tipo de portão
+                                    </label>
+                                    <div className="flex flex-row gap-3">
+
+                                        {poolItems &&
+                                            poolItems[0].gates.map((item, index) => {
+                                                const FormatIcon = poolFormatComponents[item.component];
+
+                                                return (
+                                                    <div
+                                                        key={index}
+                                                        onClick={() => setField("gate", item)}
+
+                                                        className={`flex flex-col items-center gap-2.5 justify-center w-full h-full rounded-2xl border-2 p-4  cursor-pointer hover:border-cp-life-cyan hover:bg-cp-life-cyan/10 ${item.type === gate?.type ? "border-cp-life-cyan bg-cp-life-cyan/10" : "border-border-gray "}`}
+                                                    >
+                                                        <p className="text-body text-neutral-gray">
+                                                            {" "}
+                                                            <FormatIcon className="fill-transparent stroke-primary-blue" />
+                                                        </p>
+                                                        <h2 className=" text-body-sm text-primary-blue font-semibold ">
+                                                            {item.type}
+                                                        </h2>
+                                                    </div>
+                                                );
+                                            })}
+                                    </div>
                                 </fieldset>
                             </>
                         )}
@@ -277,19 +360,44 @@ export default function PoolSimulator() {
                                 </PoolOutline>
                             </div>
                         </div>
-                        <span className="flex flex-col gap-1.5 w-full">
-                            <div className="flex flex-row gap-2">
-                                <p className={`tag cursor-pointer bg-aqua-light border-cp-life-cyan text-primary-blue`}>
-                                    Área • {fmt(area)} {unit}²
-                                </p>
-                                <p className={`tag cursor-pointer bg-aqua-light border-cp-life-cyan text-primary-blue`}>
-                                    Cerca • {fmt(fence)} {unit}
-                                </p>
-                                <p className={`tag cursor-pointer bg-aqua-light border-cp-life-cyan text-primary-blue`}>
-                                    Distância • {fmt(g)} {unit}
-                                </p>
-                            </div>
-                        </span>
+                        {actualStep === "Medidas" && (
+                            <span className="flex flex-col gap-1.5 w-full">
+                                <div className="flex flex-row gap-2">
+                                    <p
+                                        className={`tag cursor-pointer bg-aqua-light border-cp-life-cyan text-primary-blue`}
+                                    >
+                                        Área • {fmt(area)} {unit}²
+                                    </p>
+                                    <p
+                                        className={`tag cursor-pointer bg-aqua-light border-cp-life-cyan text-primary-blue`}
+                                    >
+                                        Cerca • {fmt(fence)} {unit}
+                                    </p>
+                                    <p
+                                        className={`tag cursor-pointer bg-aqua-light border-cp-life-cyan text-primary-blue`}
+                                    >
+                                        Distância • {fmt(g)} {unit}
+                                    </p>
+                                </div>
+                            </span>
+                        )}
+                        {actualStep === "Produto" && (
+                            <span className="flex flex-col gap-1.5 w-full">
+                                <div className="flex flex-row gap-2">
+                                    <p
+                                        className={`tag cursor-pointer bg-aqua-light border-cp-life-cyan text-primary-blue`}
+                                    >
+                                        {surrounded?.type}
+                                    </p>
+                                    <p
+                                        className={`tag cursor-pointer bg-aqua-light border-cp-life-cyan text-primary-blue`}
+                                    >
+                                        {gate?.type}
+                                    </p>
+
+                                </div>
+                            </span>
+                        )}
                     </div>
                 </div>
             </section>
