@@ -12,57 +12,151 @@
 
   --font-inter: "Inter", sans-serif;
 
-  /* Display */
-  --text-display: 4rem;
-  --text-display--line-height: 4.5rem;
-  --text-display--letter-spacing: -0.02em;
-  --text-display--font-weight: 800;
+  /* ========================================
+   Typography Scale — Font Weight 400
+   ======================================== */
 
+  --text-400-10: 0.625rem; /* 10px */
+  --text-400-10--font-weight: 400;
+  --text-400-12: 0.75rem; /* 12px */
+  --text-400-12--font-weight: 400;
+  --text-400-14: 0.875rem; /* 14px */
+  --text-400-14--font-weight: 400;
+  --text-400-16: 1rem; /* 16px */
+  --text-400-16--font-weight: 400;
+  --text-400-18: 1.125rem; /* 18px */
+  --text-400-18--font-weight: 400;
 
-  --text-display-xl: 2.5rem;
-  --text-display-xl--line-height: 3rem;
-  --text-display-xl--letter-spacing: -0.02em;
-  --text-display-xl--font-weight: 800;
+  /* ========================================
+   Typography Scale — Font Weight 600
+   ======================================== */
 
-  /* Headings */
-  --text-heading-xl: 3rem;
-  --text-heading-xl--line-height: 3.5rem;
-  --text-heading-xl--letter-spacing: -0.015em;
-  --text-heading-xl--font-weight: 700;
+  --text-600-10: 0.625rem; /* 10px */
+  --text-600-10--font-weight: 600;
+  --text-600-12: 0.75rem; /* 12px */
+  --text-600-12--font-weight: 600;
+  --text-600-14: 0.875rem; /* 14px */
+  --text-600-14--font-weight: 600;
+  --text-600-16: 1rem; /* 16px */
+  --text-600-16--font-weight: 600;
+  --text-600-18: 1.125rem; /* 18px */
+  --text-600-18--font-weight: 600;
+  --text-600-20: 1.25rem; /* 20px */
+  --text-600-20--font-weight: 600;
+  --text-600-22: 1.375rem; /* 22px */
+  --text-600-22--font-weight: 600;
+  --text-600-24: 1.5rem; /* 24px */
+  --text-600-24--font-weight: 600;
+  --text-600-26: 1.625rem; /* 26px */
+  --text-600-26--font-weight: 600;
+  --text-600-28: 1.75rem; /* 28px */
+  --text-600-28--font-weight: 600;
 
-  --text-heading-lg: 2.25rem;
-  --text-heading-lg--line-height: 2.75rem;
-  --text-heading-lg--letter-spacing: -0.01em;
-  --text-heading-lg--font-weight: 700;
+  /* ========================================
+   Typography Scale — Font Weight 700
+   ======================================== */
 
-  --text-heading-md: 1.75rem;
-  --text-heading-md--line-height: 2.25rem;
-  --text-heading-md--letter-spacing: -0.005em;
-  --text-heading-md--font-weight: 600;
+  --text-700-10: 0.625rem; /* 10px */
+  --text-700-10--font-weight: 700;
+  --text-700-12: 0.75rem; /* 12px */
+  --text-700-12--font-weight: 700;
+  --text-700-14: 0.875rem; /* 14px */
+  --text-700-14--font-weight: 700;
+  --text-700-16: 1rem; /* 16px */
+  --text-700-16--font-weight: 700;
+  --text-700-18: 1.125rem; /* 18px */
+  --text-700-18--font-weight: 700;
+  --text-700-20: 1.25rem; /* 20px */
+  --text-700-20--font-weight: 700;
+  --text-700-22: 1.375rem; /* 22px */
+  --text-700-22--font-weight: 700;
+  --text-700-24: 1.5rem; /* 24px */
+  --text-700-24--font-weight: 700;
+  --text-700-26: 1.625rem; /* 26px */
+  --text-700-26--font-weight: 700;
+  --text-700-28: 1.75rem; /* 28px */
+  --text-700-28--font-weight: 700;
+  --text-700-30: 1.875rem; /* 30px */
+  --text-700-30--font-weight: 700;
+  --text-700-32: 2rem; /* 32px */
+  --text-700-32--font-weight: 700;
+  --text-700-34: 2.125rem; /* 34px */
+  --text-700-34--font-weight: 700;
+  --text-700-36: 2.25rem; /* 36px */
+  --text-700-36--font-weight: 700;
+  --text-700-38: 2.375rem; /* 38px */
+  --text-700-38--font-weight: 700;
+  --text-700-40: 2.5rem; /* 40px */
+  --text-700-40--font-weight: 700;
+  --text-700-42: 2.625rem; /* 42px */
+  --text-700-42--font-weight: 700;
+  --text-700-44: 2.75rem; /* 44px */
+  --text-700-44--font-weight: 700;
+  --text-700-46: 2.875rem; /* 46px */
+  --text-700-46--font-weight: 700;
+  --text-700-48: 3rem; /* 48px */
+  --text-700-48--font-weight: 700;
 
-  --text-heading-sm: 0.875rem;
-  --text-heading-sm--line-height: 1.25rem;
-  --text-heading-sm--letter-spacing: 0em;
-  --text-heading-sm--font-weight: 600;
+  /* ========================================
+   Typography Scale — Font Weight 800
+   ======================================== */
 
-  /* Body */
-  --text-body-lg: 1.125rem;
-  --text-body-lg--line-height: 1.75rem;
-  --text-body-lg--font-weight: 400;
-
-  --text-body: 1rem;
-  --text-body--line-height: 1.5rem;
-  --text-body--font-weight: 400;
-
-  /* Small text */
-  --text-body-sm: 0.875rem;
-  --text-body-sm--line-height: 1.25rem;
-  --text-body-sm--font-weight: 400;
-
-  --text-caption: 0.75rem;
-  --text-caption--line-height: 1rem;
-  --text-caption--letter-spacing: 0.005em;
-  --text-caption--font-weight: 400;
+  --text-800-10: 0.625rem; /* 10px */
+  --text-800-10--font-weight: 800;
+  --text-800-12: 0.75rem; /* 12px */
+  --text-800-12--font-weight: 800;
+  --text-800-14: 0.875rem; /* 14px */
+  --text-800-14--font-weight: 800;
+  --text-800-16: 1rem; /* 16px */
+  --text-800-16--font-weight: 800;
+  --text-800-18: 1.125rem; /* 18px */
+  --text-800-18--font-weight: 800;
+  --text-800-20: 1.25rem; /* 20px */
+  --text-800-20--font-weight: 800;
+  --text-800-22: 1.375rem; /* 22px */
+  --text-800-22--font-weight: 800;
+  --text-800-24: 1.5rem; /* 24px */
+  --text-800-24--font-weight: 800;
+  --text-800-26: 1.625rem; /* 26px */
+  --text-800-26--font-weight: 800;
+  --text-800-28: 1.75rem; /* 28px */
+  --text-800-28--font-weight: 800;
+  --text-800-30: 1.875rem; /* 30px */
+  --text-800-30--font-weight: 800;
+  --text-800-32: 2rem; /* 32px */
+  --text-800-32--font-weight: 800;
+  --text-800-34: 2.125rem; /* 34px */
+  --text-800-34--font-weight: 800;
+  --text-800-36: 2.25rem; /* 36px */
+  --text-800-36--font-weight: 800;
+  --text-800-38: 2.375rem; /* 38px */
+  --text-800-38--font-weight: 800;
+  --text-800-40: 2.5rem; /* 40px */
+  --text-800-40--font-weight: 800;
+  --text-800-42: 2.625rem; /* 42px */
+  --text-800-42--font-weight: 800;
+  --text-800-44: 2.75rem; /* 44px */
+  --text-800-44--font-weight: 800;
+  --text-800-46: 2.875rem; /* 46px */
+  --text-800-46--font-weight: 800;
+  --text-800-48: 3rem; /* 48px */
+  --text-800-48--font-weight: 800;
+  --text-800-50: 3.125rem; /* 50px */
+  --text-800-50--font-weight: 800;
+  --text-800-52: 3.25rem; /* 52px */
+  --text-800-52--font-weight: 800;
+  --text-800-54: 3.375rem; /* 54px */
+  --text-800-54--font-weight: 800;
+  --text-800-56: 3.5rem; /* 56px */
+  --text-800-56--font-weight: 800;
+  --text-800-58: 3.625rem; /* 58px */
+  --text-800-58--font-weight: 800;
+  --text-800-60: 3.75rem; /* 60px */
+  --text-800-60--font-weight: 800;
+  --text-800-62: 3.875rem; /* 62px */
+  --text-800-62--font-weight: 800;
+  --text-800-64: 4rem; /* 64px */
+  --text-800-64--font-weight: 800;
 }
 
 * {
@@ -73,13 +167,18 @@ h2,
 h3,
 h4,
 p,
-span, label {
+span,
+label {
   user-select: none;
 }
+button {
+  cursor: pointer;
+}
+
 @layer components {
   .button-outline,
   .button-primary {
-    @apply rounded-xl px-5 py-3.5 gap-2 w-fit  text-heading-sm cursor-pointer;
+    @apply rounded-xl px-5 py-3.5 gap-2 w-fit  text-600-14 cursor-pointer;
   }
   .button-outline {
     @apply text-primary-blue border border-primary-blue;
@@ -87,16 +186,16 @@ span, label {
   .button-primary {
     @apply bg-cp-life-cyan text-white;
   }
-  .card{
-    @apply  p-6 rounded-[20px] border border-border-gray shadow-[0px_2px_8px_0px_#0F263814] gap-4 w-fit h-fit ;
+  .card {
+    @apply p-6 rounded-[20px] border border-border-gray shadow-[0px_2px_8px_0px_#0F263814] gap-4 w-fit h-fit;
   }
-  .card-info{
-    @apply bg-aqua-light border border-cp-life-cyan gap-1.5 p-3.5 rounded-xl ;
+  .card-info {
+    @apply bg-aqua-light border border-cp-life-cyan gap-1.5 p-3.5 rounded-xl;
   }
-  .input{
-     @apply border border-border-gray rounded-xl px-3.5  py-2.5 text-body text-graphite  ;
-  } 
-  .tag{
-    @apply  border border-border-gray py-2 px-3 rounded-full text-neutral-gray text-body-sm w-fit ;
+  .input {
+    @apply border border-border-gray rounded-xl px-3.5  py-2.5 text-400-16 text-graphite;
+  }
+  .tag {
+    @apply border border-border-gray py-2 px-3 rounded-full text-neutral-gray text-400-14 w-fit;
   }
 }

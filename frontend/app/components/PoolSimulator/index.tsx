@@ -66,7 +66,9 @@ export default function PoolSimulator() {
     const width = usePoolStore((state) => state.width);
     const measure = usePoolStore((state) => state.measure);
     const gate = usePoolStore((state) => state.gate);
+    const deck = usePoolStore((state) => state.deck);
     const gap = usePoolStore((state) => state.gap);
+    const display = usePoolStore((state) => state.display);
     const surrounded = usePoolStore((state) => state.surrounded);
     const actualStep = usePoolStore((state) => state.actualStep);
     const stepIndex = STEPS.indexOf(actualStep);
@@ -106,35 +108,35 @@ export default function PoolSimulator() {
                         <div
                             className={` h-7 w-7 rounded-full ${0 <= stepIndex ? "bg-cp-life-cyan" : "border border-neutral-gray/30"}`}
                         ></div>
-                        <h3 className="text-graphite text-body-sm">Formato</h3>
+                        <h3 className="text-graphite text-400-14">Formato</h3>
                     </div>
                     <div className="w-7 h-0.5 bg-neutral-gray/30" />
                     <div className="flex flex-row items-center gap-2 cursor-pointer ">
                         <div
                             className={` h-7 w-7 rounded-full ${1 <= stepIndex ? "bg-cp-life-cyan" : "border border-neutral-gray/30"}`}
                         ></div>
-                        <h3 className="text-graphite text-body-sm">Medidas</h3>
+                        <h3 className="text-graphite text-400-14">Medidas</h3>
                     </div>
                     <div className="w-7 h-0.5 bg-neutral-gray/30" />
                     <div className="flex flex-row items-center gap-2 cursor-pointer ">
                         <div
                             className={` h-7 w-7 rounded-full ${2 <= stepIndex ? "bg-cp-life-cyan" : "border border-neutral-gray/30"}`}
                         ></div>
-                        <h3 className="text-graphite text-body-sm">Produto</h3>
+                        <h3 className="text-graphite text-400-14">Produto</h3>
                     </div>
                     <div className="w-7 h-0.5 bg-neutral-gray/30" />
                     <div className="flex flex-row items-center gap-2 cursor-pointer ">
                         <div
                             className={` h-7 w-7 rounded-full ${3 <= stepIndex ? "bg-cp-life-cyan" : "border border-neutral-gray/30"}`}
                         ></div>
-                        <h3 className="text-graphite text-body-sm">Configuração</h3>
+                        <h3 className="text-graphite text-400-14">Configuração</h3>
                     </div>
                     <div className="w-7 h-0.5 bg-neutral-gray/30" />
                     <div className="flex flex-row items-center gap-2 cursor-pointer ">
                         <div
                             className={` h-7 w-7 rounded-full ${4 <= stepIndex ? "bg-cp-life-cyan" : "border border-neutral-gray/30"}`}
                         ></div>
-                        <h3 className="text-graphite text-body-sm">Estimativa</h3>
+                        <h3 className="text-graphite text-400-14">Estimativa</h3>
                     </div>
                 </div>
 
@@ -143,10 +145,10 @@ export default function PoolSimulator() {
                         {actualStep === "Formato" && (
                             <>
                                 <span className="flex flex-col gap-4 w-full">
-                                    <h1 className="text-heading-md text-primary-blue">
+                                    <h1 className="text-600-28 text-primary-blue">
                                         Qual é o formato da sua piscina?
                                     </h1>
-                                    <h2 className="text-body text-graphite">
+                                    <h2 className="text-400-16 text-graphite">
                                         Selecione o formato que melhor representa a sua piscina.
                                         Você poderá ajustar as medidas no próximo passo.
                                     </h2>
@@ -164,14 +166,14 @@ export default function PoolSimulator() {
                                                     {FormatIcon ? (
                                                         <FormatIcon className="fill-transparent stroke-primary-blue" />
                                                     ) : null}{" "}
-                                                    <h4 className="text-body-sm text-graphite">
+                                                    <h4 className="text-400-14 text-graphite">
                                                         {item.name}
                                                     </h4>
                                                 </div>
                                             );
                                         })}
                                 </div>
-                                <p className="card-info w-full h-fit text-graphite text-body-sm">
+                                <p className="card-info w-full h-fit text-graphite text-400-14">
                                     Não encontrou o formato exato? Escolha o mais próximo — você
                                     poderá detalhar melhor nas etapas seguintes.
                                 </p>
@@ -180,10 +182,10 @@ export default function PoolSimulator() {
                         {actualStep === "Medidas" && (
                             <>
                                 <span className="flex flex-col gap-4 w-full">
-                                    <h1 className="text-heading-md text-primary-blue">
+                                    <h1 className="text-600-28 text-primary-blue">
                                         Piscina {format?.name}
                                     </h1>
-                                    <h2 className="text-body text-graphite">
+                                    <h2 className="text-400-16 text-graphite">
                                         Ajuste as medidas. A planta ao lado é atualizada
                                         automaticamente.
                                     </h2>
@@ -191,7 +193,7 @@ export default function PoolSimulator() {
                                 <fieldset className="flex flex-col gap-4">
                                     <div className="flex flex-row justify-between gap-3">
                                         <span className="flex flex-col gap-1.5 w-full">
-                                            <label className="text-body-sm text-graphite">
+                                            <label className="text-400-14 text-graphite">
                                                 Comprimento
                                             </label>
                                             <MeasureInput
@@ -201,7 +203,7 @@ export default function PoolSimulator() {
                                             />
                                         </span>
                                         <span className="flex flex-col gap-1.5 w-full">
-                                            <label className="text-body-sm text-graphite">
+                                            <label className="text-400-14 text-graphite">
                                                 Largura
                                             </label>
                                             <MeasureInput
@@ -212,7 +214,7 @@ export default function PoolSimulator() {
                                         </span>
                                     </div>
                                     <span className="flex flex-col gap-1.5 w-full">
-                                        <label className="text-body-sm text-graphite">
+                                        <label className="text-400-14 text-graphite">
                                             Distância da piscina até a cerca
                                         </label>
                                         <MeasureInput
@@ -222,7 +224,7 @@ export default function PoolSimulator() {
                                         />
                                     </span>
                                     <span className="flex flex-col gap-1.5 w-full">
-                                        <label className="text-body-sm text-graphite">
+                                        <label className="text-400-14 text-graphite">
                                             Unidade de medida
                                         </label>
                                         <div className="flex flex-row gap-2">
@@ -246,16 +248,16 @@ export default function PoolSimulator() {
                         {actualStep === "Produto" && (
                             <>
                                 <span className="flex flex-col gap-4 w-full">
-                                    <h1 className="text-heading-md text-primary-blue">
+                                    <h1 className="text-600-28 text-primary-blue">
                                         Escolha seu produto
                                     </h1>
-                                    <h2 className="text-body text-graphite">
+                                    <h2 className="text-400-16 text-graphite">
                                         Selecione o material da cerca e a opção de portão que deseja
                                         incluir.
                                     </h2>
                                 </span>
                                 <fieldset className="flex flex-col gap-4">
-                                    <label className="text-body-sm font-medium text-graphite">
+                                    <label className="text-400-14 font-medium text-graphite">
                                         Produto
                                     </label>
                                     {poolItems &&
@@ -267,10 +269,10 @@ export default function PoolSimulator() {
 
                                                     className={`flex flex-col items-start gap-2.5 justify-center w-full h-full rounded-2xl border-2 p-4  cursor-pointer hover:border-cp-life-cyan hover:bg-cp-life-cyan/10 ${item.type === surrounded?.type ? "border-cp-life-cyan bg-cp-life-cyan/10" : "border-border-gray "}`}
                                                 >
-                                                    <h2 className=" text-[22px] text-primary-blue font-semibold ">
+                                                    <h2 className=" text-600-22 text-primary-blue ">
                                                         {item.type}
                                                     </h2>
-                                                    <p className="text-body text-neutral-gray">
+                                                    <p className="text-400-16 text-neutral-gray">
                                                         {item.description}
                                                     </p>
                                                 </div>
@@ -278,7 +280,7 @@ export default function PoolSimulator() {
                                         })}
                                 </fieldset>
                                 <fieldset className="flex flex-col gap-4">
-                                    <label className="text-body-sm font-medium text-graphite">
+                                    <label className="text-400-14 font-medium text-graphite">
                                         Tipo de portão
                                     </label>
                                     <div className="flex flex-row gap-3">
@@ -294,13 +296,77 @@ export default function PoolSimulator() {
 
                                                         className={`flex flex-col items-center gap-2.5 justify-center w-full h-full rounded-2xl border-2 p-4  cursor-pointer hover:border-cp-life-cyan hover:bg-cp-life-cyan/10 ${item.type === gate?.type ? "border-cp-life-cyan bg-cp-life-cyan/10" : "border-border-gray "}`}
                                                     >
-                                                        <p className="text-body text-neutral-gray">
+                                                        <p className="text-400-16 text-neutral-gray">
                                                             {" "}
                                                             <FormatIcon className="fill-transparent stroke-primary-blue" />
                                                         </p>
-                                                        <h2 className=" text-body-sm text-primary-blue font-semibold ">
+                                                        <h2 className=" text-400-14 text-primary-blue font-semibold ">
                                                             {item.type}
                                                         </h2>
+                                                    </div>
+                                                );
+                                            })}
+                                    </div>
+                                </fieldset>
+                            </>
+                        )}
+                        {actualStep === "Configuração" && (
+                            <>
+                                <span className="flex flex-col gap-4 w-full">
+                                    <h1 className="text-600-28 text-primary-blue">
+                                        Configure seu projeto
+                                    </h1>
+                                    <h2 className="text-400-16 text-graphite">
+                                        Escolha o piso ao redor da piscina e a cor da malha da cerca.
+                                    </h2>
+                                </span>
+                                <fieldset className="flex flex-col gap-4">
+                                    <label className="text-400-14 font-medium text-graphite">
+                                        Tipo de deck/piso
+                                    </label>
+                                    <div className="grid grid-cols-2 gap-3">
+
+                                        {poolItems &&
+                                            poolItems[0].deck.map((item, index) => {
+                                                return (
+                                                    <div
+                                                        key={index}
+                                                        onClick={() => setField("deck", item)}
+
+                                                        className={`flex flex-col items-center gap-2.5 justify-center w-full h-full rounded-2xl border-2 p-4  cursor-pointer hover:border-cp-life-cyan hover:bg-cp-life-cyan/10 ${item.name === deck?.name ? "border-cp-life-cyan bg-cp-life-cyan/10" : "border-border-gray "}`}
+                                                    >
+                                                        <figure>
+                                                            <img src={`./imgs/${item.imagePath}`} />
+                                                        </figure>
+                                                        <p className="text-400-16 text-neutral-gray">
+                                                            {item.name}
+                                                        </p>
+                                                    </div>
+                                                );
+                                            })}
+                                    </div>
+                                </fieldset>
+                                <fieldset className="flex flex-col gap-4">
+                                    <label className="text-600-14 font-medium text-graphite">
+                                        Cor da tela
+                                    </label>
+                                    <div className="grid grid-cols-2 gap-3">
+
+                                        {poolItems &&
+                                            poolItems[0].display.map((item, index) => {
+                                                return (
+                                                    <div
+                                                        key={index}
+                                                        onClick={() => setField("display", item)}
+
+                                                        className={`flex flex-col items-center gap-2.5 justify-center w-full h-full rounded-2xl border-2 p-4  cursor-pointer hover:border-cp-life-cyan hover:bg-cp-life-cyan/10 ${item.name === display?.name ? "border-cp-life-cyan bg-cp-life-cyan/10" : "border-border-gray "}`}
+                                                    >
+                                                        <figure>
+                                                            <img src={`./imgs/${item.imagePath}`} />
+                                                        </figure>
+                                                        <p className="text-400-16 text-neutral-gray">
+                                                            {item.name}
+                                                        </p>
                                                     </div>
                                                 );
                                             })}
@@ -345,7 +411,7 @@ export default function PoolSimulator() {
                     </div>
 
                     <div className="card flex flex-col w-full h-full ">
-                        <h2 className="text-heading-md text-primary-blue">
+                        <h2 className="text-600-28 text-primary-blue">
                             Visualização 2D
                         </h2>
                         <div className="bg-aqua-light rounded-2xl px-7 py-10">
@@ -354,7 +420,7 @@ export default function PoolSimulator() {
                                     {FormatIcon && (
                                         <FormatIcon className="w-9/12 h-full stroke-cp-life-cyan fill-cp-life-cyan  " />
                                     )}
-                                    <p className="absolute text-graphite text-heading-sm bottom-5">
+                                    <p className="absolute text-graphite text-600-14 bottom-5">
                                         PISCINA {fmt(w)} X {fmt(h)} {unit}
                                     </p>
                                 </PoolOutline>

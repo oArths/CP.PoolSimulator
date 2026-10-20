@@ -62,19 +62,19 @@
         ],
         "display": [
             {
-                "color": "Grafite",
+                "name": "Grafite",
                 "imagePath": "amostraGrafite.png"
             },
             {
-                "color": "Cinza",
+                "name": "Cinza",
                 "imagePath": "amostraCinza.png"
             },
             {
-                "color": "Areia",
+                "name": "Areia",
                 "imagePath": "amostraAreia.png"
             },
             {
-                "color": "Branco",
+                "name": "Branco",
                 "imagePath": "amostraBranco.png"
             }
         ]

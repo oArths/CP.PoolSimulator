@@ -19,7 +19,7 @@ interface PoolDeck {
 }
 
 interface PoolDisplay {
-    color: string;
+    name: string;
     imagePath: string
 }
 

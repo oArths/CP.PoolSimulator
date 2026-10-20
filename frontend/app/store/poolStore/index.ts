@@ -14,7 +14,6 @@ interface PoolStoreInterface {
   gate: PoolGate | null;
   deck: PoolDeck | null;
   display: PoolDisplay | null;
-  // shortcut: steps deriva de actualStep; quando existirem passos puláveis ou validação por passo, trocar por mapa de validade
   actualStep: "Formato" | "Medidas" | "Produto" | "Configuração" | "Estimativa";
 
   setField: <K extends keyof PoolStoreInterface>(
@@ -52,7 +51,6 @@ export const usePoolStore = create<PoolStoreInterface>()(
     {
       name: "session",
       version: 1,
-      // sessões antigas têm schema incompatível (valores string, passos em minúsculas): reseta para os defaults
       migrate: () => ({}) as PoolStoreInterface,
     },
   ),

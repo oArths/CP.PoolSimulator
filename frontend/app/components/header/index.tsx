@@ -6,7 +6,7 @@ export default function Header() {
       <img src={"./imgs/logo.svg"} className="g-full w-fit select-none " />
       <span className="flex flex-row gap-5 w-fit items-center justify-center">
         <p
-          className="text-body-sm text-graphite
+          className="text-400-14 text-graphite
   hover:text-primary-blue hover:underline
   cursor-pointer select-none
   transition-colors duration-300 ease-in-out"
@@ -15,7 +15,7 @@ export default function Header() {
           Produtos
         </p>
         <p
-          className="text-body-sm text-graphite
+          className="text-400-14 text-graphite
   hover:text-primary-blue hover:underline
   cursor-pointer select-none
   transition-colors duration-300 ease-in-out"
@@ -23,7 +23,7 @@ export default function Header() {
           Soluções
         </p>
         <p
-          className="text-body-sm text-graphite
+          className="text-400-14 text-graphite
   hover:text-primary-blue hover:underline
   cursor-pointer select-none
   transition-colors duration-300 ease-in-out"
@@ -31,7 +31,7 @@ export default function Header() {
           A CP Life
         </p>
         <p
-          className="text-body-sm text-graphite
+          className="text-400-14 text-graphite
   hover:text-primary-blue hover:underline
   cursor-pointer select-none
   transition-colors duration-300 ease-in-out"
@@ -39,7 +39,7 @@ export default function Header() {
           Projetos
         </p>
         <p
-          className="text-body-sm text-graphite
+          className="text-400-14 text-graphite
   hover:text-primary-blue hover:underline
   cursor-pointer select-none
   transition-colors duration-300 ease-in-out"
@@ -47,14 +47,14 @@ export default function Header() {
           Blog
         </p>
         <p
-          className="text-body-sm text-graphite
+          className="text-400-14 text-graphite
   hover:text-primary-blue hover:underline
   cursor-pointer select-none
   transition-colors duration-300 ease-in-out"
         >
           Contato
         </p>
-        <button className="bg-cp-life-cyan rounded-xl px-4 py-3 gap-2 w-fit  text-heading-sm cursor-pointer text-off-white ">
+        <button className="bg-cp-life-cyan rounded-xl px-4 py-3 gap-2 w-fit  text-600-14 cursor-pointer text-off-white ">
           Simule seu projeto
         </button>
       </span>
