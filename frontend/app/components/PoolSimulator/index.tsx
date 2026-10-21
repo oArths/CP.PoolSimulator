@@ -319,7 +319,7 @@ export default function PoolSimulator() {
                                                 className="flex flex-col items-center gap-2.5 justify-center"
                                             >
                                                 <figure className="w-20 h-fit">
-                                                    <img src={`./imgs/${item.imagePath}`} alt="" />
+                                                    <img src={`./imgs/${item.imagePath}`} alt="" width={80} height={46} className="w-full h-auto" />
                                                 </figure>
                                                 <p className="text-400-16 text-neutral-gray">
                                                     {item.name}
@@ -347,7 +347,7 @@ export default function PoolSimulator() {
                                                 className="flex flex-col items-center gap-2.5 justify-center"
                                             >
                                                 <figure className="w-20 h-fit">
-                                                    <img src={`./imgs/${item.imagePath}`} alt="" />
+                                                    <img src={`./imgs/${item.imagePath}`} alt="" width={80} height={46} className="w-full h-auto" />
                                                 </figure>
                                                 <p className="text-400-16 text-neutral-gray">
                                                     {item.name}

@@ -169,6 +169,8 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                                                 className="w-3 h-3 rounded-sm"
                                                 src={`./imgs/${deck?.imagePath}`}
                                                 alt=""
+                                                width={80}
+                                                height={46}
                                             />
                                             <p className="text-400-14 text-graphite">{deck?.name}</p>
                                         </span>
@@ -182,6 +184,8 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                                                 className="w-3 h-3 rounded-sm"
                                                 src={`./imgs/${display?.imagePath}`}
                                                 alt=""
+                                                width={80}
+                                                height={46}
                                             />
                                             <p className="text-400-14 text-graphite">
                                                 {display?.name}

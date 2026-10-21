@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-start h-auto">
       <Header />
-      <main className="flex flex-col w-full">
+      <main className="flex flex-col items-center w-full">
         <PoolSimulator />
       </main>
       <Footer/>

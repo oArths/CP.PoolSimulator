@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { usePoolStore } from "@/app/store/poolStore";
 import { STEPS } from "../PoolSimulator/steps";
 
@@ -27,15 +28,31 @@ export default function Home() {
     const [title, description] = COPY[actualStep] ?? COPY.Formato;
 
     return (
-        <section className="bg-[url('/imgs/poolExampleBackGround.svg')] bg-cover bg-center bg-no-repeat h-fit w-full flex flex-row px-16 py-12 justify-between ">
-            <div className="flex flex-col gap-5 items-start justify-center">
+        <section className="relative h-fit w-full flex flex-row px-16 py-12 justify-between ">
+            <Image
+                src="/imgs/poolExampleBackGround.jpg"
+                alt=""
+                fill
+                preload
+                fetchPriority="high"
+                sizes="100vw"
+                className="object-cover object-center"
+            />
+            <div className="relative flex flex-col gap-5 items-start justify-center">
                 <h1 className="text-800-40 font-extrabold text-off-white ">{title}</h1>
                 <p className="text-400-18 text-off-white/85 ">
                     Passo {STEPS.indexOf(actualStep) + 1} de {STEPS.length} — {description}
                 </p>
             </div>
-            <div className="lg:flex hidden">
-                <img src={"./imgs/poolExample.svg"} alt="" />
+            <div className="relative lg:flex hidden">
+                <Image
+                    src="/imgs/poolExample.jpg"
+                    alt=""
+                    width={1584}
+                    height={672}
+                    sizes="475px"
+                    className="w-[475px] max-w-full h-auto"
+                />
             </div>
 
         </section>

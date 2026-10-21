@@ -3,7 +3,7 @@ import logo from "../../../public/imgs/logo.svg";
 export default function Header() {
   return (
     <header className=" w-full px-14 py-1 flex flex-row items-center justify-between h-20">
-      <img src={"./imgs/logo.svg"} alt="CP Life" className="g-full w-fit select-none " />
+      <img src={"./imgs/logo.svg"} alt="CP Life" width={102} height={36} className="g-full w-fit select-none " />
       <span className="flex flex-row gap-5 w-fit items-center justify-center ">
         <div className="flex-row gap-5 items-center justify-center lg:flex hidden ">
 
@@ -58,7 +58,7 @@ export default function Header() {
           </p>
         </div>
 
-        <button className="bg-cp-life-cyan rounded-xl px-4 py-3 gap-2 w-fit text-400-12 md:text-600-14 cursor-pointer text-off-white ">
+        <button className="bg-cp-life-cyan rounded-xl px-4 py-3 gap-2 w-fit text-400-12 md:text-600-14 cursor-pointer text-graphite ">
           Simule seu projeto
         </button>
       </span>
