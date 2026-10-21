@@ -12,8 +12,6 @@ import { STEPS } from "./steps";
 import { SectionTitle, SelectableCard } from "../ui";
 import { usePoolStore } from "@/app/store/poolStore";
 import QuoteModal from "../quoteModal";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const poolFormatComponents: Record<
     string,
@@ -424,7 +422,6 @@ export default function PoolSimulator() {
 
                 {isQuoteOpen && <QuoteModal onClose={() => setIsQuoteOpen(false)} />}
             </section>
-            <ToastContainer position="top-right" autoClose={4000} />
         </>
     );
 }

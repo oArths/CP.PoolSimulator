@@ -51,7 +51,7 @@ export function Field({
         <span className="flex flex-col gap-1.5 items-start justify-center w-full">
             <label className="text-400-14 text-graphite">{label}</label>
             {children}
-            {error && <span className="text-400-12 text-red-500">{error}</span>}
+            {error && <span className="text-400-12 text-red-600">{error}</span>}
         </span>
     );
 }
