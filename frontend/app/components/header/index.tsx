@@ -1,5 +1,3 @@
-import logo from "../../../public/imgs/logo.svg";
-
 export default function Header() {
   return (
     <header className=" w-full px-14 py-1 flex flex-row items-center justify-between h-20">
@@ -58,7 +56,7 @@ export default function Header() {
           </p>
         </div>
 
-        <button className="bg-cp-life-cyan rounded-xl px-4 py-3 gap-2 w-fit text-400-12 md:text-600-14 cursor-pointer text-graphite ">
+        <button className="bg-primary-blue rounded-xl px-4 py-3 gap-2 w-fit text-400-12 md:text-600-14 cursor-pointer text-off-white ">
           Simule seu projeto
         </button>
       </span>

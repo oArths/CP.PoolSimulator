@@ -185,7 +185,7 @@ button {
     @apply text-primary-blue border border-primary-blue;
   }
   .button-primary {
-    @apply bg-cp-life-cyan text-graphite;
+    @apply bg-primary-blue text-off-white;
   }
   .card {
     @apply p-6 rounded-[20px] border border-border-gray shadow-[0px_2px_8px_0px_#0F263814] gap-4 w-fit h-fit;

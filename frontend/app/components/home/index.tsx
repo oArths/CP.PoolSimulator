@@ -30,7 +30,7 @@ export default function Home() {
     return (
         <section className="relative h-fit w-full flex flex-row px-16 py-12 justify-between ">
             <Image
-                src="/imgs/poolExampleBackGround.jpg"
+                src="/imgs/poolExampleBackGround.svg"
                 alt=""
                 fill
                 preload
@@ -51,7 +51,7 @@ export default function Home() {
                     width={1584}
                     height={672}
                     sizes="475px"
-                    className="w-[475px] max-w-full h-auto"
+                    className="w-[475px] max-w-full h-auto rounded-2xl"
                 />
             </div>
 
