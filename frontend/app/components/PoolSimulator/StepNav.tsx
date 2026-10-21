@@ -13,14 +13,14 @@ export default function StepNav({
 }) {
     return (
         <div
-            className={`flex flex-row items-center mt-auto ${showBack ? "justify-between" : "justify-end"}`}
+            className={`flex flex-col-reverse gap-5 mt-10 sm:flex-row items-center sm:mt-auto ${showBack ? "justify-between" : "justify-end"}`}
         >
             {showBack && (
-                <button className="button-outline" onClick={onBack}>
+                <button className="button-outline w-full sm:w-fit" onClick={onBack}>
                     Voltar ao {backLabel}
                 </button>
             )}
-            <button className="button-primary" onClick={onNext}>
+            <button className="button-primary  w-full sm:w-fit" onClick={onNext}>
                 Próximo: {nextLabel}
             </button>
         </div>

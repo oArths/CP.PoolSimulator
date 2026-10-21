@@ -178,7 +178,7 @@ button {
 @layer components {
   .button-outline,
   .button-primary {
-    @apply rounded-xl px-5 py-3.5 gap-2 w-fit  text-600-14 cursor-pointer;
+    @apply rounded-xl px-5 py-3.5 gap-2 w-fit text-400-12 md:text-600-14 cursor-pointer;
   }
   .button-outline {
     @apply text-primary-blue border border-primary-blue;

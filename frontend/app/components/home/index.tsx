@@ -6,8 +6,8 @@ export default function Home() {
                 <h1 className="text-800-40 font-extrabold text-off-white ">Escolha o formato da piscina</h1>
                 <h3 className="text-400-18 text-off-white/85 ">Passo 1 de 5 — selecione o formato que mais se aproxima da sua piscina.</h3>
             </div>
-            <div>
-                <img src={"./imgs/poolExample.svg"}/>
+            <div className="lg:flex hidden">
+                <img src={"./imgs/poolExample.svg"} />
             </div>
 
         </section>

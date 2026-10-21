@@ -130,8 +130,8 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
         <Modal
             onClose={onClose}
             Children={
-                <section className="h-fit px-8 gap-5 grid grid-cols-3">
-                    <div className="flex flex-col gap-5 col-span-1">
+                <section className="h-fit px-8 gap-5 grid grid-cols-2 lg:grid-cols-3">
+                    <div className="flex flex-col gap-5 col-span-2 lg:col-span-1">
                         <div className="card flex flex-col w-full">
                             <SectionTitle
                                 title="Resumo da configuração"
@@ -426,18 +426,18 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                                 </div>
                             </div>
                         </fieldset>
-                        <div className="flex justify-between">
+                        <div className="flex flex-col-reverse gap-5 mt-10 sm:flex-row items-center sm:mt-auto">
                             <button
                                 type="button"
                                 onClick={onClose}
-                                className="button-outline"
+                                className="button-outline w-full sm:w-fit"
                             >
                                 Voltar à Configuração
                             </button>
                             <button
                                 type="button"
                                 onClick={submitQuote}
-                                className="button-primary"
+                                className="button-primary w-full sm:w-fit"
                             >
                                 Enviar solicitação
                             </button>

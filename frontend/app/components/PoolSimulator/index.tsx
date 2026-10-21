@@ -121,8 +121,8 @@ export default function PoolSimulator() {
             <section className="flex flex-col items-center justify-center w-11/12 h-fit gap-7 mb-20">
                 <StepIndicator currentIndex={stepIndex} />
 
-                <div className="grid grid-cols-2 gap-7 flex-1 w-full h-fit">
-                    <div className="card flex flex-col gap-4 w-full h-full">
+                <div className="flex flex-col-reverse lg:grid  lg:grid-cols-2 gap-7 flex-1 w-full h-fit">
+                    <div className="card flex flex-col gap-4 w-full h-full order-1">
                         {actualStep === "Formato" && (
                             <>
                                 <SectionTitle
@@ -368,7 +368,7 @@ export default function PoolSimulator() {
                         />
                     </div>
 
-                    <div className="card flex flex-col w-full h-full">
+                    <div className="card flex flex-col w-full h-full order-2">
                         <h2 className="text-600-28 text-primary-blue">Visualização 2D</h2>
                         <div className="bg-aqua-light rounded-2xl px-7 py-10 my-auto">
                             <div className="flex flex-col items-center">
@@ -383,38 +383,38 @@ export default function PoolSimulator() {
                                     {FormatIcon && (
                                         <FormatIcon className="w-9/12 h-full stroke-cp-life-cyan fill-cp-life-cyan  " />
                                     )}
-                                    <p className="absolute text-graphite text-600-14 bottom-8">
+                                    <p className="absolute text-graphite text-600-12 md:text-600-14 bottom-2 md:bottom-5 lg:bottom-8">
                                         PISCINA {fmt(w)} X {fmt(h)} {unit}
                                     </p>
                                 </PoolOutline>
                                 {actualStep !== "Formato" &&
                                     actualStep !== "Medidas" &&
                                     actualStep !== "Produto" && (
-                                        <p className="text-primary-blue text-400-14 relative top-3">
-                                            {gate?.type}
+                                        <p className="text-primary-blue  relative top-3 text-400-12 md:text-400-14">
+                                            {gate?.type} 
                                         </p>
                                     )}
                             </div>
                         </div>
                         {actualStep === "Medidas" && (
                             <div className="flex flex-row gap-2">
-                                <p className="tag bg-aqua-light border-cp-life-cyan text-primary-blue">
+                                <p className="tag bg-aqua-light border-cp-life-cyan text-primary-blue text-400-12 md:text-400-14">
                                     Área • {fmt(area)} {unit}²
                                 </p>
-                                <p className="tag bg-aqua-light border-cp-life-cyan text-primary-blue">
+                                <p className="tag bg-aqua-light border-cp-life-cyan text-primary-blue text-400-12 md:text-400-14">
                                     Cerca • {fmt(fence)} {unit}
                                 </p>
-                                <p className="tag bg-aqua-light border-cp-life-cyan text-primary-blue">
+                                <p className="tag bg-aqua-light border-cp-life-cyan text-primary-blue text-400-12 md:text-400-14">
                                     Distância • {fmt(g)} {unit}
                                 </p>
                             </div>
                         )}
                         {actualStep === "Produto" && (
                             <div className="flex flex-row gap-2">
-                                <p className="tag bg-aqua-light border-cp-life-cyan text-primary-blue">
+                                <p className="tag bg-aqua-light border-cp-life-cyan text-primary-blue text-400-12 md:text-400-14 ">
                                     {surrounded?.type}
                                 </p>
-                                <p className="tag bg-aqua-light border-cp-life-cyan text-primary-blue">
+                                <p className="tag bg-aqua-light border-cp-life-cyan text-primary-blue text-400-12 md:text-400-14">
                                     {gate?.type}
                                 </p>
                             </div>
