@@ -16,11 +16,13 @@ interface PoolGate {
 interface PoolDeck {    
     name: string;
     imagePath: string;
+    texture: string;
 }
 
 interface PoolDisplay {
     name: string;
     imagePath: string
+    color: string;
 }
 
 interface PoolAvailable {

@@ -45,37 +45,45 @@
         "deck": [
             {
                 "name": "Pedra natural",
-                "imagePath": "amostraPedraNatural.png"
+                "imagePath": "amostraPedraNatural.png",
+                "texture": "pedra-natural.svg"
             },
             {
                 "name": "Madeira",
-                "imagePath": "amostraMadeira.png"
+                "imagePath": "amostraMadeira.png",
+                "texture": "madeira.svg"
             },
             {
                 "name": "Cerâmica",
-                "imagePath": "amostraCeramica.png"
+                "imagePath": "amostraCeramica.png",
+                "texture": "ceramica.svg"
             },
             {
                 "name": "Cimento",
-                "imagePath": "amostraCimento.png"
+                "imagePath": "amostraCimento.png",
+                "texture": "cimento.svg"
             }
         ],
         "display": [
             {
                 "name": "Grafite",
-                "imagePath": "amostraGrafite.png"
+                "imagePath": "amostraGrafite.png",
+                "color": "#2C3643"
             },
             {
                 "name": "Cinza",
-                "imagePath": "amostraCinza.png"
+                "imagePath": "amostraCinza.png",
+                "color": "#6F788C"
             },
             {
                 "name": "Areia",
-                "imagePath": "amostraAreia.png"
+                "imagePath": "amostraAreia.png",
+                "color": "#CBBDA7"
             },
             {
                 "name": "Branco",
-                "imagePath": "amostraBranco.png"
+                "imagePath": "amostraBranco.png",
+                "color": "#FDFDFD"
             }
         ]
     }
