@@ -130,7 +130,7 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
         <Modal
             onClose={onClose}
             Children={
-                <section className="h-fit px-8 gap-5 grid grid-cols-2 lg:grid-cols-3">
+                <section className="h-fit px-4 md:px-8 gap-5 grid grid-cols-2 lg:grid-cols-3">
                     <div className="flex flex-col gap-5 col-span-2 lg:col-span-1">
                         <div className="card flex flex-col w-full">
                             <SectionTitle
@@ -146,7 +146,7 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                                         {FormatIcon && (
                                             <FormatIcon className="w-9/12 h-full stroke-cp-life-cyan fill-cp-life-cyan  " />
                                         )}
-                                        <p className="absolute text-graphite text-600-14 bottom-8">
+                                        <p className="absolute text-graphite text-600-12 md:text-600-14 bottom-2 md:bottom-5 lg:bottom-8">
                                             PISCINA {fmt(w)} X {fmt(h)} {unit}
                                         </p>
                                     </PoolOutline>
@@ -226,7 +226,7 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                                             onChange={(e) => setField("fullName", e.target.value)}
                                         />
                                     </Field>
-                                    <div className="flex flex-row w-full gap-4">
+                                    <div className="flex flex-col  md:flex-row w-full gap-4">
                                         <Field label="WhatsApp *" error={formErrors.whatsapp}>
                                             <input
                                                 className="input"
@@ -257,7 +257,7 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                                     Onde será seu projeto?
                                 </h3>
                                 <div className="flex flex-col gap-4 w-full">
-                                    <div className="flex flex-row w-full gap-4">
+                                    <div className="flex flex-col  md:flex-row w-full gap-4">
                                         <Field label="CEP *" error={formErrors.cep}>
                                             <input
                                                 className="input"
@@ -294,7 +294,7 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                                     <label className="text-400-14 text-graphite">
                                         Tipo de serviço *
                                     </label>
-                                    <div className="grid grid-cols-2 gap-3">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <label
                                             className={`flex cursor-pointer items-start gap-3 rounded-xl border px-4 py-3 transition-colors ${service === "Produto" ? "border-cp-life-cyan bg-cp-life-cyan/10 " : "border-border-gray"}`}
                                         >
@@ -380,8 +380,16 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                                                         key={`${file.name}-${index}`}
                                                         className="flex items-center justify-between gap-2 rounded-lg border border-border-gray px-3 py-2"
                                                     >
-                                                        <span className="truncate text-400-14 text-graphite">
-                                                            {file.name}
+                                                        <span className=" min-w-0 flex-1 truncate text-400-14 text-graphite">
+                                                            {(() => {
+                                                                const dotIndex = file.name.lastIndexOf(".");
+                                                                const name = dotIndex > 0 ? file.name.slice(0, dotIndex) : file.name;
+                                                                const extension = dotIndex > 0 ? file.name.slice(dotIndex) : "";
+
+                                                                return name.length > 20
+                                                                    ? `${name.slice(0, 20)}...${extension}`
+                                                                    : file.name;
+                                                            })()}
                                                         </span>
                                                         <button
                                                             type="button"

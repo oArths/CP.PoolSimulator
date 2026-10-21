@@ -137,10 +137,10 @@ export default function PoolSimulator() {
                                                 key={item.name}
                                                 selected={format?.name === item.name}
                                                 onClick={() => setField("format", item)}
-                                                className="flex flex-col items-center justify-center gap-3"
+                                                className="flex flex-col items-center justify-center gap-3 "
                                             >
                                                 {Icon ? (
-                                                    <Icon className="fill-transparent stroke-primary-blue" />
+                                                    <Icon className="fill-transparent stroke-primary-blue w-[90%]" />
                                                 ) : null}
                                                 <h4 className="text-400-14 text-graphite">
                                                     {item.name}
@@ -264,7 +264,7 @@ export default function PoolSimulator() {
                                     <label className="text-600-14 font-medium text-graphite">
                                         Tipo de portão
                                     </label>
-                                    <div className="flex flex-row gap-3">
+                                    <div className="grid grid-cols-2 gap-3">
                                         {poolItems[0].gates.map((item) => {
                                             const Icon = poolFormatComponents[item.component];
                                             return (
@@ -272,14 +272,14 @@ export default function PoolSimulator() {
                                                     key={item.type}
                                                     selected={item.type === gate?.type}
                                                     onClick={() => setField("gate", item)}
-                                                    className="flex flex-col items-center gap-2.5 justify-center"
+                                                    className="flex flex-col items-center gap-2.5 justify-center "
                                                 >
                                                     <p className="text-400-16 text-neutral-gray">
                                                         {Icon ? (
                                                             <Icon className="fill-transparent stroke-primary-blue" />
                                                         ) : null}
                                                     </p>
-                                                    <h2 className="text-400-14 text-primary-blue font-semibold">
+                                                    <h2 className="text-400-14 text-primary-blue font-semibold text-center">
                                                         {item.type}
                                                     </h2>
                                                 </SelectableCard>

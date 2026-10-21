@@ -9,9 +9,9 @@ export function SectionTitle({
 }) {
     return (
         <span className="flex flex-col gap-4 w-full">
-            <h1 className="text-600-28 text-primary-blue">{title}</h1>
+            <h1 className="text-600-24 md:text-600-28 text-primary-blue">{title}</h1>
             {description && (
-                <h2 className="text-400-16 text-graphite">{description}</h2>
+                <h2 className="text-400-14 md:text-400-16 text-graphite">{description}</h2>
             )}
         </span>
     );

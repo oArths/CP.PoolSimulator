@@ -58,7 +58,7 @@ export default function Header() {
           </p>
         </div>
 
-        <button className="bg-cp-life-cyan rounded-xl px-4 py-3 gap-2 w-fit  text-600-14 cursor-pointer text-off-white ">
+        <button className="bg-cp-life-cyan rounded-xl px-4 py-3 gap-2 w-fit text-400-12 md:text-600-14 cursor-pointer text-off-white ">
           Simule seu projeto
         </button>
       </span>
