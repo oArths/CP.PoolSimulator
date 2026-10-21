@@ -15,21 +15,20 @@ interface PoolStoreInterface {
   deck: PoolDeck | null;
   display: PoolDisplay | null;
   actualStep: "Formato" | "Medidas" | "Produto" | "Configuração" | "Estimativa";
+  service: "Produto" | "Produto + Instalçao";
+  fullName: string;
+  whatsapp: string;
+  email: string;
+  cep: string;
+  state: string;
+  city: string;
+  message: string;
+  consent: boolean;
 
   setField: <K extends keyof PoolStoreInterface>(
     field: K,
     value: PoolStoreInterface[K],
   ) => void;
-}
-
-interface UserData {
-  fullName: string;
-  whatszap: number;
-  email: string;
-  cep: number;
-  state: string;
-  city: string;
-  images: [];
 }
 
 export const usePoolStore = create<PoolStoreInterface>()(
@@ -45,6 +44,15 @@ export const usePoolStore = create<PoolStoreInterface>()(
       deck: poolItems[0].deck[0],
       display: poolItems[0].display[0],
       actualStep: "Formato",
+      service: "Produto",
+      fullName: "",
+      whatsapp: "",
+      email: "",
+      cep: "",
+      state: "",
+      city: "",
+      message: "",
+      consent: false,
 
       setField: (field, value) => set({ [field]: value }),
     }),

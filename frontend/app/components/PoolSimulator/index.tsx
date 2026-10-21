@@ -5,7 +5,12 @@ import Home from "../home";
 import poolDescription from "../../json/poolAvalible.json";
 import * as SvgComponents from "../svg";
 import PoolOutline from "../svg/poolOutline";
+import Dropdown from "../dropdown";
 import { usePoolStore } from "@/app/store/poolStore";
+import { quoteSchema } from "@/app/store/poolStore/quoteSchema";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { X } from "lucide-react";
 import Modal from "../modal";
 
 const poolFormatComponents: Record<
@@ -20,6 +25,12 @@ const STEPS = [
     "Configuração",
     "Estimativa",
 ] as const;
+
+const UFS = [
+    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS",
+    "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC",
+    "SP", "SE", "TO",
+];
 
 function MeasureInput({
     value,
@@ -72,13 +83,79 @@ export default function PoolSimulator() {
     const display = usePoolStore((state) => state.display);
     const surrounded = usePoolStore((state) => state.surrounded);
     const actualStep = usePoolStore((state) => state.actualStep);
+    const service = usePoolStore((state) => state.service);
+    const fullName = usePoolStore((state) => state.fullName);
+    const whatsapp = usePoolStore((state) => state.whatsapp);
+    const email = usePoolStore((state) => state.email);
+    const cep = usePoolStore((state) => state.cep);
+    const state = usePoolStore((state) => state.state);
+    const city = usePoolStore((state) => state.city);
+    const message = usePoolStore((state) => state.message);
+    const consent = usePoolStore((state) => state.consent);
     const stepIndex = STEPS.indexOf(actualStep);
     const [configStep, setConfigStep] = useState<"deck" | "display">("deck");
     const [productStep, setProductStep] = useState<"produto" | "portao">(
         "produto",
     );
+    const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+    const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+    const [attachments, setAttachments] = useState<File[]>([]);
     const showDeckColors = stepIndex >= STEPS.indexOf("Configuração");
     const FormatIcon = format ? poolFormatComponents[format.component] : null;
+
+    const submitQuote = () => {
+        const result = quoteSchema.safeParse({
+            fullName,
+            whatsapp,
+            email,
+            cep,
+            state,
+            city,
+            message,
+            consent,
+        });
+        if (!result.success) {
+            const errors: Record<string, string> = {};
+            for (const issue of result.error.issues) {
+                const key = issue.path[0];
+                if (typeof key === "string" && !errors[key]) errors[key] = issue.message;
+            }
+            setFormErrors(errors);
+            toast.error(Object.values(errors)[0] ?? "Revise os campos destacados.");
+            return;
+        }
+        setFormErrors({});
+        toast.success("Solicitação enviada! Nossa equipe entrará em contato.");
+    };
+
+    const lookupCep = async (value: string) => {
+        const digits = value.replace(/\D/g, "").slice(0, 8);
+        setField("cep", digits);
+        if (digits.length !== 8) return;
+        try {
+            const response = await fetch(`https://viacep.com.br/ws/${digits}/json/`);
+            const data = await response.json();
+            if (data.erro) {
+                toast.error("CEP não encontrado.");
+                return;
+            }
+            setField("state", data.uf ?? "");
+            setField("city", data.localidade ?? "");
+        } catch {
+            toast.error("Não foi possível buscar o CEP.");
+        }
+    };
+
+    const addFiles = (selected: FileList | null) => {
+        if (!selected) return;
+        const next = [...attachments, ...Array.from(selected)];
+        if (next.length > 3) toast.error("Anexe no máximo 3 arquivos.");
+        setAttachments(next.slice(0, 3));
+    };
+
+    const removeFile = (index: number) => {
+        setAttachments(attachments.filter((_, fileIndex) => fileIndex !== index));
+    };
 
     const decimals = measure === "Metros" ? 2 : 0;
     const unit = measure === "Metros" ? "m" : "cm";
@@ -430,6 +507,10 @@ export default function PoolSimulator() {
                                         setProductStep("portao");
                                         return;
                                     }
+                                    if (actualStep === "Configuração" && configStep === "display") {
+                                        setIsQuoteOpen(true);
+                                        return;
+                                    }
                                     setField("actualStep", STEPS[stepIndex + 1]);
                                 }}
                                 disabled={actualStep === "Estimativa"}
@@ -438,9 +519,11 @@ export default function PoolSimulator() {
                                 Próximo:{" "}
                                 {actualStep === "Configuração" && configStep === "deck"
                                     ? "Cor da tela"
-                                    : actualStep === "Produto" && productStep === "produto"
-                                        ? "Tipo de portão"
-                                        : STEPS[stepIndex + 1]}
+                                    : actualStep === "Configuração" && configStep === "display"
+                                        ? "Solicitar orçamento"
+                                        : actualStep === "Produto" && productStep === "produto"
+                                            ? "Tipo de portão"
+                                            : STEPS[stepIndex + 1]}
                             </button>
                         </div>
                     </div>
@@ -512,8 +595,9 @@ export default function PoolSimulator() {
                         )}
                     </div>
                 </div>
-                <Modal
-                    onClose={() => console.log("d")}
+                {isQuoteOpen && (
+                    <Modal
+                        onClose={() => setIsQuoteOpen(false)}
                     Children={
                         <section className="h-fit  px-8 gap-5 grid grid-cols-3">
                             <div className="flex flex-col gap-5 col-span-1">
@@ -643,64 +727,295 @@ export default function PoolSimulator() {
                                 </div>
                             </div>
                             <div className="card flex flex-col w-full col-span-2 ">
-
                                 <span className="flex flex-col gap-4 w-full">
                                     <h1 className="text-600-28 text-primary-blue">
                                         Vamos conversar sobre seu projeto?
                                     </h1>
                                     <h2 className="text-400-16 text-graphite">
-                                        Preencha seus dados para que nossa equipe analise a configuração e entre em contato com você.
+                                        Preencha seus dados para que nossa equipe analise a
+                                        configuração e entre em contato com você.
                                     </h2>
                                 </span>
                                 <fieldset className="flex flex-col gap-6">
                                     <div className="flex flex-col gap-4 w-full">
-
-                                        <h3 className="text-600-16 text-primary-blue">Seus dados</h3>
+                                        <h3 className="text-600-16 text-primary-blue">
+                                            Seus dados
+                                        </h3>
                                         <div className="flex flex-col gap-4 w-full">
                                             <span className="flex flex-col gap-1.5 items-start justify-center w-full">
-                                                <label className="text-400-14 text-graphite">Nome completo *</label>
-                                                <input className="input" placeholder="Como podemos chamar você?" />
+                                                <label className="text-400-14 text-graphite">
+                                                    Nome completo *
+                                                </label>
+                                                <input
+                                                    className="input"
+                                                    placeholder="Como podemos chamar você?"
+                                                    value={fullName}
+                                                    onChange={(e) => setField("fullName", e.target.value)}
+                                                />
+                                                {formErrors.fullName && (
+                                                    <span className="text-400-12 text-red-500">
+                                                        {formErrors.fullName}
+                                                    </span>
+                                                )}
                                             </span>
                                             <div className="flex flex-row w-full gap-4">
                                                 <span className="flex flex-col gap-1.5 items-start justify-center w-full">
-                                                    <label className="text-400-14 text-graphite">WhatsApp *</label>
-                                                    <input className="input" placeholder="(00) 00000-0000" />
+                                                    <label className="text-400-14 text-graphite">
+                                                        WhatsApp *
+                                                    </label>
+                                                    <input
+                                                        className="input"
+                                                        placeholder="(00) 00000-0000"
+                                                        inputMode="numeric"
+                                                        value={whatsapp}
+                                                        onChange={(e) =>
+                                                            setField(
+                                                                "whatsapp",
+                                                                e.target.value.replace(/\D/g, "").slice(0, 11),
+                                                            )
+                                                        }
+                                                    />
+                                                    {formErrors.whatsapp && (
+                                                        <span className="text-400-12 text-red-500">
+                                                            {formErrors.whatsapp}
+                                                        </span>
+                                                    )}
                                                 </span>
                                                 <span className="flex flex-col gap-1.5 items-start justify-center w-full">
-                                                    <label className="text-400-14 text-graphite">E-mail *</label>
-                                                    <input className="input" placeholder="voce@exemplo.com.br" />
+                                                    <label className="text-400-14 text-graphite">
+                                                        E-mail *
+                                                    </label>
+                                                    <input
+                                                        className="input"
+                                                        placeholder="voce@exemplo.com.br"
+                                                        value={email}
+                                                        onChange={(e) => setField("email", e.target.value)}
+                                                    />
+                                                    {formErrors.email && (
+                                                        <span className="text-400-12 text-red-500">
+                                                            {formErrors.email}
+                                                        </span>
+                                                    )}
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="flex flex-col gap-4 w-full">
-
-                                        <h3 className="text-600-16 text-primary-blue">Onde será seu projeto?</h3>
+                                        <h3 className="text-600-16 text-primary-blue">
+                                            Onde será seu projeto?
+                                        </h3>
                                         <div className="flex flex-col gap-4 w-full">
-
                                             <div className="flex flex-row w-full gap-4">
                                                 <span className="flex flex-col gap-1.5 items-start justify-center w-full">
-                                                    <label className="text-400-14 text-graphite">CEP *</label>
-                                                    <input className="input" placeholder="00000-000" />
+                                                    <label className="text-400-14 text-graphite">
+                                                        CEP *
+                                                    </label>
+                                                    <input
+                                                        className="input"
+                                                        placeholder="00000-000"
+                                                        inputMode="numeric"
+                                                        value={cep}
+                                                        onChange={(e) => lookupCep(e.target.value)}
+                                                    />
+                                                    {formErrors.cep && (
+                                                        <span className="text-400-12 text-red-500">
+                                                            {formErrors.cep}
+                                                        </span>
+                                                    )}
                                                 </span>
                                                 <span className="flex flex-col gap-1.5 items-start justify-center w-full">
-                                                    <label className="text-400-14 text-graphite">Estado *</label>
-                                                    <input className="input" placeholder="Selecione o estado" />
+                                                    <label className="text-400-14 text-graphite">
+                                                        Estado *
+                                                    </label>
+                                                    <Dropdown
+                                                        options={UFS}
+                                                        value={state}
+                                                        onChange={(value) => setField("state", value)}
+                                                        placeholder="Selecione o estado"
+                                                    />
+                                                    {formErrors.state && (
+                                                        <span className="text-400-12 text-red-500">
+                                                            {formErrors.state}
+                                                        </span>
+                                                    )}
                                                 </span>
                                             </div>
                                             <span className="flex flex-col gap-1.5 items-start justify-center w-full">
-                                                <label className="text-400-14 text-graphite">Cidade *</label>
-                                                <input className="input" placeholder="Informe a cidade do projeto" />
+                                                <label className="text-400-14 text-graphite">
+                                                    Cidade *
+                                                </label>
+                                                <input
+                                                    className="input"
+                                                    placeholder="Informe a cidade do projeto"
+                                                    value={city}
+                                                    onChange={(e) => setField("city", e.target.value)}
+                                                />
+                                                {formErrors.city && (
+                                                    <span className="text-400-12 text-red-500">
+                                                        {formErrors.city}
+                                                    </span>
+                                                )}
                                             </span>
                                         </div>
                                     </div>
-                                </fieldset>
-                            </div>
+                                    <div className="flex flex-col gap-4 w-full">
+                                        <h3 className="text-600-16 text-primary-blue">
+                                            O que você precisa?
+                                        </h3>
+                                        <div className="flex flex-col gap-4 w-full">
+                                            <label className="text-400-14 text-graphite">
+                                                Tipo de serviço *
+                                            </label>
+                                            <div className="grid grid-cols-2 gap-3">
+                                                <label
+                                                    className={`flex cursor-pointer items-start gap-3 rounded-xl border px-4 py-3 transition-colors ${service === "Produto" ? "border-cp-life-cyan bg-cp-life-cyan/10 " : "border-border-gray"}`}>
 
+                                                    <input
+                                                        type="radio"
+                                                        name="tipo"
+                                                        value="produto"
+                                                        className="mt-0.5 h-4 w-4 accent-primary-blue"
+                                                        checked={service === "Produto"}
+                                                        onChange={() => setField("service", "Produto")}
+                                                    />
+
+                                                    <div className="flex flex-col">
+                                                        <span className={`text-600-14 ${service === "Produto" ? "text-primary-blue" : "text-gray-800 "}`}>
+                                                            Produto
+                                                        </span>
+
+                                                        <span className="text-400-12 text-gray-500">
+                                                            Somente o fornecimento da cerca.
+                                                        </span>
+                                                    </div>
+                                                </label>
+
+                                                <label
+                                                    className={`flex cursor-pointer items-start gap-3 rounded-xl border px-4 py-3 transition-colors ${service === "Produto + Instalçao" ? "border-cp-life-cyan bg-cp-life-cyan/10 " : "border-border-gray"}`}>
+                                                    <input
+                                                        type="radio"
+                                                        name="tipo"
+                                                        value="produto-instalacao"
+                                                        checked={service === "Produto + Instalçao"}
+                                                        onChange={() => setField("service", "Produto + Instalçao")}
+                                                        className="mt-0.5 h-4 w-4 accent-primary-blue"
+                                                    />
+
+                                                    <div className="flex flex-col">
+                                                        <span className={`text-600-14 ${service === "Produto + Instalçao" ? "text-primary-blue" : "text-gray-800 "}`}>
+                                                            Produto + instalação
+                                                        </span>
+
+                                                        <span className="text-400-12 text-gray-500">
+                                                            Fornecimento e instalação no local.
+                                                        </span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <span className="flex flex-col gap-1.5 items-start justify-center w-full">
+                                                <label className="text-400-14 text-graphite">
+                                                    Mensagem (opcional)
+                                                </label>
+
+                                                <textarea
+                                                    className="w-full resize-none rounded-lg border border-gray-200 bg-white px-3 py-2 text-400-14 text-graphite outline-none focus:border-primary-blue"
+                                                    placeholder="Conte mais sobre o local, suas dúvidas e o que você precisa para o projeto."
+                                                    rows={7}
+                                                    value={message}
+                                                    onChange={(e) => setField("message", e.target.value)}
+                                                />
+                                                {formErrors.message && (
+                                                    <span className="text-400-12 text-red-500">
+                                                        {formErrors.message}
+                                                    </span>
+                                                )}
+                                            </span>
+                                            <span className="flex flex-col gap-2.5 w-full">
+                                                <label className="text-400-14 text-graphite">
+                                                    Fotos e plantas (opcional)
+                                                </label>
+                                                <label className="flex flex-col items-center justify-center gap-1.5 rounded-xl border border-dashed border-border-gray bg-off-white px-4 py-7 text-center cursor-pointer transition-colors hover:border-cp-life-cyan">
+                                                    <span className="text-600-14 text-primary-blue">
+                                                        Anexar fotos ou plantas
+                                                    </span>
+                                                    <span className="text-400-12 text-neutral-gray">
+                                                        Fotos da piscina e do piso, plantas ou projeto em PDF
+                                                    </span>
+                                                    <input
+                                                        type="file"
+                                                        accept="image/*,.pdf"
+                                                        multiple
+                                                        className="hidden"
+                                                        onChange={(e) => {
+                                                            addFiles(e.target.files);
+                                                            e.target.value = "";
+                                                        }}
+                                                    />
+                                                </label>
+                                                {attachments.length > 0 && (
+                                                    <ul className="flex flex-col gap-2">
+                                                        {attachments.map((file, index) => (
+                                                            <li
+                                                                key={`${file.name}-${index}`}
+                                                                className="flex items-center justify-between gap-2 rounded-lg border border-border-gray px-3 py-2"
+                                                            >
+                                                                <span className="truncate text-400-14 text-graphite">
+                                                                    {file.name}
+                                                                </span>
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() => removeFile(index)}
+                                                                    className="shrink-0 rounded-full p-1 hover:bg-off-white"
+                                                                >
+                                                                    <X className="h-4 w-4 stroke-neutral-gray" />
+                                                                </button>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                )}
+                                                <p className="text-400-12 text-neutral-gray">
+                                                    Os anexos ajudam nossa equipe a entender melhor as
+                                                    condições do local.
+                                                </p>
+                                            </span>
+                                            <div className="border-t border-border-gray pt-4">
+                                                <label className="flex items-start gap-3 cursor-pointer">
+                                                    <input
+                                                        type="checkbox"
+                                                        required
+                                                        checked={consent}
+                                                        onChange={(e) => setField("consent", e.target.checked)}
+                                                        className="mt-0.5 h-4 w-4 shrink-0 accent-primary-blue"
+                                                    />
+                                                    <span className="text-400-14 text-graphite">
+                                                        Autorizo o tratamento dos meus dados para análise do
+                                                        projeto e contato pela CP LIFE, conforme a{" "}
+                                                        <a href="#" className="text-primary-blue underline">
+                                                            Política de Privacidade
+                                                        </a>
+                                                        . *
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div className="flex justify-end">
+                                    <button
+                                        type="button"
+                                        onClick={submitQuote}
+                                        className="button-primary"
+                                    >
+                                        Enviar solicitação
+                                    </button>
+                                </div>
+                            </div>
                         </section>
                     }
-                />
+                    />
+                )}
             </section>
+            <ToastContainer position="top-right" autoClose={4000} />
         </>
     );
 }
