@@ -12,7 +12,7 @@ export default function StepIndicator({ currentIndex }: { currentIndex: number }
                             <div
                                 className={` h-5 lg:h-7 aspect-square rounded-full ${index <= currentIndex ? "bg-cp-life-cyan" : "border border-neutral-gray/30"}`}
                             />
-                            <h3 className="text-graphite text-400-12 lg:text-400-14">{step}</h3>
+                            <span className="text-graphite text-400-12 lg:text-400-14">{step}</span>
                         </div>
                     </div>
                     {(index === currentIndex|| index === currentIndex + 1) && (
@@ -23,7 +23,7 @@ export default function StepIndicator({ currentIndex }: { currentIndex: number }
                                 <div
                                     className={` h-5 lg:h-7 aspect-square rounded-full ${index <= currentIndex ? "bg-cp-life-cyan" : "border border-neutral-gray/30"}`}
                                 />
-                                <h3 className="text-graphite text-400-12 lg:text-400-14">{step}</h3>
+                                <span className="text-graphite text-400-12 lg:text-400-14">{step}</span>
                             </div>
                         </div>
                     )}

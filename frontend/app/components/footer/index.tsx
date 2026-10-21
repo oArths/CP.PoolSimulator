@@ -11,13 +11,13 @@ export default function Footer() {
                     <h2 className="text-600-28 font-bold text-off-white">CP LIFE</h2>
                     <p className="text-400-12 md:text-600-14  text-off-white">Proteção e elegância para piscinas,<br /> pets e ambientes de lazer desde 2007.</p>
                     <div className="flex flex-row gap-3 justify-between md:justify-start w-full">
-                        <button className="rounded-lg p-2.5 bg-off-white/7">
+                        <button aria-label="Facebook" className="rounded-lg p-2.5 bg-off-white/7">
                             <FacebookLogo className="w-5 h-5 text-off-white" />
                         </button>
-                        <button className="rounded-lg p-2.5 bg-off-white/7">
+                        <button aria-label="Instagram" className="rounded-lg p-2.5 bg-off-white/7">
                             <InstagramLogo className="w-5 h-5 text-off-white" />
                         </button>
-                        <button className="rounded-lg p-2.5 bg-off-white/7">
+                        <button aria-label="YouTube" className="rounded-lg p-2.5 bg-off-white/7">
                             <YoutubeLogo className="w-5 h-5 text-off-white" />
                         </button>
                     </div>

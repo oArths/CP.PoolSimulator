@@ -30,12 +30,12 @@ export default function Home() {
         <section className="bg-[url('/imgs/poolExampleBackGround.svg')] bg-cover bg-center bg-no-repeat h-fit w-full flex flex-row px-16 py-12 justify-between ">
             <div className="flex flex-col gap-5 items-start justify-center">
                 <h1 className="text-800-40 font-extrabold text-off-white ">{title}</h1>
-                <h3 className="text-400-18 text-off-white/85 ">
+                <p className="text-400-18 text-off-white/85 ">
                     Passo {STEPS.indexOf(actualStep) + 1} de {STEPS.length} — {description}
-                </h3>
+                </p>
             </div>
             <div className="lg:flex hidden">
-                <img src={"./imgs/poolExample.svg"} />
+                <img src={"./imgs/poolExample.svg"} alt="" />
             </div>
 
         </section>

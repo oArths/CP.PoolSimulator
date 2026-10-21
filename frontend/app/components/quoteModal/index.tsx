@@ -168,6 +168,7 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                                             <img
                                                 className="w-3 h-3 rounded-sm"
                                                 src={`./imgs/${deck?.imagePath}`}
+                                                alt=""
                                             />
                                             <p className="text-400-14 text-graphite">{deck?.name}</p>
                                         </span>
@@ -180,6 +181,7 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                                             <img
                                                 className="w-3 h-3 rounded-sm"
                                                 src={`./imgs/${display?.imagePath}`}
+                                                alt=""
                                             />
                                             <p className="text-400-14 text-graphite">
                                                 {display?.name}
@@ -393,6 +395,7 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                                                         </span>
                                                         <button
                                                             type="button"
+                                                            aria-label="Remover arquivo"
                                                             onClick={() => removeFile(index)}
                                                             className="shrink-0 rounded-full p-1 hover:bg-off-white"
                                                         >
