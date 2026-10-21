@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @theme {
   --color-primary-blue: #0873a6;
@@ -193,7 +193,7 @@ button {
     @apply bg-aqua-light border border-cp-life-cyan gap-1.5 p-3.5 rounded-xl;
   }
   .input {
-    @apply border border-border-gray rounded-xl px-3.5  py-2.5 text-400-16 text-graphite;
+    @apply border border-border-gray rounded-xl px-3.5  py-2.5 text-400-16 text-graphite w-full;
   }
   .tag {
     @apply border border-border-gray py-2 px-3 rounded-full text-neutral-gray text-400-14 w-fit;

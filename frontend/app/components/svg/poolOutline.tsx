@@ -41,7 +41,7 @@ export default function PoolOutline({
           height={284}
           rx={14}
           strokeWidth={3}
-          strokeDasharray="6 "
+          strokeDasharray="54 26 "
           stroke={outlineColor}
         />
 

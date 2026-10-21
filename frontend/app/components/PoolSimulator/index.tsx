@@ -74,7 +74,9 @@ export default function PoolSimulator() {
     const actualStep = usePoolStore((state) => state.actualStep);
     const stepIndex = STEPS.indexOf(actualStep);
     const [configStep, setConfigStep] = useState<"deck" | "display">("deck");
-    const [productStep, setProductStep] = useState<"produto" | "portao">("produto");
+    const [productStep, setProductStep] = useState<"produto" | "portao">(
+        "produto",
+    );
     const showDeckColors = stepIndex >= STEPS.indexOf("Configuração");
     const FormatIcon = format ? poolFormatComponents[format.component] : null;
 
@@ -261,7 +263,11 @@ export default function PoolSimulator() {
                                             : "Escolha o tipo de portão que deseja incluir."}
                                     </h2>
                                 </span>
-                                <fieldset className={productStep === "produto" ? "flex flex-col gap-4" : "hidden"}>
+                                <fieldset
+                                    className={
+                                        productStep === "produto" ? "flex flex-col gap-4" : "hidden"
+                                    }
+                                >
                                     <label className="text-600-14 font-medium text-graphite">
                                         Produto
                                     </label>
@@ -271,7 +277,6 @@ export default function PoolSimulator() {
                                                 <div
                                                     key={index}
                                                     onClick={() => setField("surrounded", item)}
-
                                                     className={`flex flex-col items-start gap-2.5 justify-center w-full h-full rounded-2xl border-2 p-4  cursor-pointer hover:border-cp-life-cyan hover:bg-cp-life-cyan/10 ${item.type === surrounded?.type ? "border-cp-life-cyan bg-cp-life-cyan/10" : "border-border-gray "}`}
                                                 >
                                                     <h2 className=" text-600-22 text-primary-blue ">
@@ -284,12 +289,15 @@ export default function PoolSimulator() {
                                             );
                                         })}
                                 </fieldset>
-                                <fieldset className={productStep === "portao" ? "flex flex-col gap-4" : "hidden"}>
+                                <fieldset
+                                    className={
+                                        productStep === "portao" ? "flex flex-col gap-4" : "hidden"
+                                    }
+                                >
                                     <label className="text-600-14 font-medium text-graphite">
                                         Tipo de portão
                                     </label>
                                     <div className="flex flex-row gap-3">
-
                                         {poolItems &&
                                             poolItems[0].gates.map((item, index) => {
                                                 const FormatIcon = poolFormatComponents[item.component];
@@ -298,7 +306,6 @@ export default function PoolSimulator() {
                                                     <div
                                                         key={index}
                                                         onClick={() => setField("gate", item)}
-
                                                         className={`flex flex-col items-center gap-2.5 justify-center w-full h-full rounded-2xl border-2 p-4  cursor-pointer hover:border-cp-life-cyan hover:bg-cp-life-cyan/10 ${item.type === gate?.type ? "border-cp-life-cyan bg-cp-life-cyan/10" : "border-border-gray "}`}
                                                     >
                                                         <p className="text-400-16 text-neutral-gray">
@@ -327,19 +334,21 @@ export default function PoolSimulator() {
                                             : "Escolha a cor da malha da cerca."}
                                     </h2>
                                 </span>
-                                <fieldset className={configStep === "deck" ? "flex flex-col gap-6" : "hidden"}>
+                                <fieldset
+                                    className={
+                                        configStep === "deck" ? "flex flex-col gap-6" : "hidden"
+                                    }
+                                >
                                     <label className="text-600-14 font-medium text-graphite">
                                         Tipo de deck/piso
                                     </label>
                                     <div className="grid grid-cols-2 gap-3">
-
                                         {poolItems &&
                                             poolItems[0].deck.map((item, index) => {
                                                 return (
                                                     <div
                                                         key={index}
                                                         onClick={() => setField("deck", item)}
-
                                                         className={`flex flex-col items-center gap-2.5 justify-center w-full h-full rounded-2xl border-2 p-4  cursor-pointer hover:border-cp-life-cyan hover:bg-cp-life-cyan/10 ${item.name === deck?.name ? "border-cp-life-cyan bg-cp-life-cyan/10" : "border-border-gray "}`}
                                                     >
                                                         <figure className="w-20 h-fit">
@@ -353,19 +362,21 @@ export default function PoolSimulator() {
                                             })}
                                     </div>
                                 </fieldset>
-                                <fieldset className={configStep === "display" ? "flex flex-col gap-4" : "hidden"}>
+                                <fieldset
+                                    className={
+                                        configStep === "display" ? "flex flex-col gap-4" : "hidden"
+                                    }
+                                >
                                     <label className="text-600-14 font-medium text-graphite">
                                         Cor da tela
                                     </label>
                                     <div className="grid grid-cols-2 gap-3">
-
                                         {poolItems &&
                                             poolItems[0].display.map((item, index) => {
                                                 return (
                                                     <div
                                                         key={index}
                                                         onClick={() => setField("display", item)}
-
                                                         className={`flex flex-col items-center gap-2.5 justify-center w-full h-full rounded-2xl border-2 p-4  cursor-pointer hover:border-cp-life-cyan hover:bg-cp-life-cyan/10 ${item.name === display?.name ? "border-cp-life-cyan bg-cp-life-cyan/10" : "border-border-gray "}`}
                                                     >
                                                         <figure className="w-20 h-fit">
@@ -385,7 +396,10 @@ export default function PoolSimulator() {
                             <button
                                 className="button-outline"
                                 onClick={() => {
-                                    if (actualStep === "Configuração" && configStep === "display") {
+                                    if (
+                                        actualStep === "Configuração" &&
+                                        configStep === "display"
+                                    ) {
                                         setConfigStep("deck");
                                         return;
                                     }
@@ -432,13 +446,15 @@ export default function PoolSimulator() {
                     </div>
 
                     <div className="card flex flex-col w-full h-full ">
-                        <h2 className="text-600-28 text-primary-blue">
-                            Visualização 2D
-                        </h2>
+                        <h2 className="text-600-28 text-primary-blue">Visualização 2D</h2>
                         <div className="bg-aqua-light rounded-2xl px-7 py-10 my-auto">
                             <div className="flex flex-col items-center">
                                 <PoolOutline
-                                    texture={showDeckColors && deck ? `./imgs/${deck.texture}` : undefined}
+                                    texture={
+                                        showDeckColors && deck
+                                            ? `./imgs/${deck.texture}`
+                                            : undefined
+                                    }
                                     outlineColor={showDeckColors ? display?.color : undefined}
                                 >
                                     {FormatIcon && (
@@ -491,13 +507,199 @@ export default function PoolSimulator() {
                                     >
                                         {gate?.type}
                                     </p>
-
                                 </div>
                             </span>
                         )}
                     </div>
                 </div>
-                {/* <Modal onClose={()=> console.log("d")}  Children={<>ds</>} /> */}
+                <Modal
+                    onClose={() => console.log("d")}
+                    Children={
+                        <section className="h-fit  px-8 gap-5 grid grid-cols-3">
+                            <div className="flex flex-col gap-5 col-span-1">
+                                <div className="card flex flex-col w-full ">
+                                    <span className="flex flex-col gap-4 w-full">
+                                        <h1 className="text-600-28 text-primary-blue">
+                                            Resumo da configuração
+                                        </h1>
+                                        <h2 className="text-400-16 text-graphite">
+                                            Confira todos os detalhes escolhidos para sua cerca.
+                                        </h2>
+                                    </span>
+                                    <div className="bg-aqua-light rounded-2xl px-7 py-10 my-auto">
+                                        <div className="flex flex-col items-center">
+                                            <PoolOutline
+                                                texture={
+                                                    showDeckColors && deck
+                                                        ? `./imgs/${deck.texture}`
+                                                        : undefined
+                                                }
+                                                outlineColor={
+                                                    showDeckColors ? display?.color : undefined
+                                                }
+                                            >
+                                                {FormatIcon && (
+                                                    <FormatIcon className="w-9/12 h-full stroke-cp-life-cyan fill-cp-life-cyan  " />
+                                                )}
+                                                <p className="absolute text-graphite text-600-14 bottom-8">
+                                                    PISCINA {fmt(w)} X {fmt(h)} {unit}
+                                                </p>
+                                            </PoolOutline>
+                                            {actualStep !== "Formato" &&
+                                                actualStep !== "Medidas" &&
+                                                actualStep !== "Produto" && (
+                                                    <p className="text-primary-blue text-400-14 relative top-3">
+                                                        {gate?.type}
+                                                    </p>
+                                                )}
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col gap-4">
+                                        <span className="flex flex-row justify-between">
+                                            <p className="text-400-14 text-neutral-gray">
+                                                Formato da piscina
+                                            </p>
+                                            <p className="text-400-14 text-graphite">
+                                                {format?.name}
+                                            </p>
+                                        </span>
+                                        <span className="flex flex-row justify-between">
+                                            <p className="text-400-14 text-neutral-gray">Produto</p>
+                                            <p className="text-400-14 text-graphite">
+                                                {surrounded?.type}
+                                            </p>
+                                        </span>
+                                        <span className="flex flex-row justify-between">
+                                            <p className="text-400-14 text-neutral-gray">Portão</p>
+                                            <p className="text-400-14 text-graphite">{gate?.type}</p>
+                                        </span>
+                                        <span className="flex flex-row justify-between">
+                                            <p className="text-400-14 text-neutral-gray">Deck/piso</p>
+                                            <span className="flex flex-row gap-1 items-center justify-center">
+                                                <img
+                                                    className="w-3 h-3 rounded-sm"
+                                                    src={`./imgs/${deck?.imagePath}`}
+                                                />
+                                                <p className="text-400-14 text-graphite">
+                                                    {deck?.name}
+                                                </p>
+                                            </span>
+                                        </span>
+                                        <span className="flex flex-row justify-between">
+                                            <p className="text-400-14 text-neutral-gray">
+                                                Cor da tela
+                                            </p>
+                                            <span className="flex flex-row gap-1 items-center justify-center">
+                                                <img
+                                                    className="w-3 h-3 rounded-sm"
+                                                    src={`./imgs/${display?.imagePath}`}
+                                                />
+                                                <p className="text-400-14 text-graphite">
+                                                    {display?.name}
+                                                </p>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="card flex flex-col w-full ">
+                                    <span className="flex flex-col gap-4 w-full">
+                                        <h1 className="text-600-28 text-primary-blue">
+                                            Resumo das medidas
+                                        </h1>
+                                    </span>
+
+                                    <div className="flex flex-col gap-4">
+                                        <span className="flex flex-row justify-between">
+                                            <p className="text-400-14 text-neutral-gray">
+                                                Dimensões da piscina
+                                            </p>
+                                            <p className="text-400-14 text-graphite">
+                                                {fmt(w)} X {fmt(h)} {unit}
+                                            </p>
+                                        </span>
+                                        <span className="flex flex-row justify-between">
+                                            <p className="text-400-14 text-neutral-gray">
+                                                Distância da piscina até a cerca
+                                            </p>
+                                            <p className="text-400-14 text-graphite">{gap}</p>
+                                        </span>
+                                        <span className="flex flex-row justify-between">
+                                            <p className="text-400-14 text-neutral-gray">
+                                                Área da piscina{" "}
+                                            </p>
+                                            <p className="text-400-14 text-graphite">
+                                                {fmt(area)} {unit}²
+                                            </p>
+                                        </span>
+                                        <span className="flex flex-row justify-between border-t border-border-gray pt-3">
+                                            <p className="text-400-18 text-graphite">
+                                                Perímetro da cerca
+                                            </p>
+                                            <p className="text-600-18 text-primary-blue">
+                                                {fmt(area)} {unit}²
+                                            </p>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card flex flex-col w-full col-span-2 ">
+
+                                <span className="flex flex-col gap-4 w-full">
+                                    <h1 className="text-600-28 text-primary-blue">
+                                        Vamos conversar sobre seu projeto?
+                                    </h1>
+                                    <h2 className="text-400-16 text-graphite">
+                                        Preencha seus dados para que nossa equipe analise a configuração e entre em contato com você.
+                                    </h2>
+                                </span>
+                                <fieldset className="flex flex-col gap-6">
+                                    <div className="flex flex-col gap-4 w-full">
+
+                                        <h3 className="text-600-16 text-primary-blue">Seus dados</h3>
+                                        <div className="flex flex-col gap-4 w-full">
+                                            <span className="flex flex-col gap-1.5 items-start justify-center w-full">
+                                                <label className="text-400-14 text-graphite">Nome completo *</label>
+                                                <input className="input" placeholder="Como podemos chamar você?" />
+                                            </span>
+                                            <div className="flex flex-row w-full gap-4">
+                                                <span className="flex flex-col gap-1.5 items-start justify-center w-full">
+                                                    <label className="text-400-14 text-graphite">WhatsApp *</label>
+                                                    <input className="input" placeholder="(00) 00000-0000" />
+                                                </span>
+                                                <span className="flex flex-col gap-1.5 items-start justify-center w-full">
+                                                    <label className="text-400-14 text-graphite">E-mail *</label>
+                                                    <input className="input" placeholder="voce@exemplo.com.br" />
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col gap-4 w-full">
+
+                                        <h3 className="text-600-16 text-primary-blue">Onde será seu projeto?</h3>
+                                        <div className="flex flex-col gap-4 w-full">
+
+                                            <div className="flex flex-row w-full gap-4">
+                                                <span className="flex flex-col gap-1.5 items-start justify-center w-full">
+                                                    <label className="text-400-14 text-graphite">CEP *</label>
+                                                    <input className="input" placeholder="00000-000" />
+                                                </span>
+                                                <span className="flex flex-col gap-1.5 items-start justify-center w-full">
+                                                    <label className="text-400-14 text-graphite">Estado *</label>
+                                                    <input className="input" placeholder="Selecione o estado" />
+                                                </span>
+                                            </div>
+                                            <span className="flex flex-col gap-1.5 items-start justify-center w-full">
+                                                <label className="text-400-14 text-graphite">Cidade *</label>
+                                                <input className="input" placeholder="Informe a cidade do projeto" />
+                                            </span>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                        </section>
+                    }
+                />
             </section>
         </>
     );

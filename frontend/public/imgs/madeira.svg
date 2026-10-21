@@ -1,11 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="240" height="160" viewBox="0 0 240 160">
 <defs>
+  <filter id="grain" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency=".006 .11" numOctaves="3" seed="9"/>
+    <feColorMatrix values="0 0 0 0 .36  0 0 0 0 .27  0 0 0 0 .19  0 0 0 .6 0"/>
+  </filter>
   <pattern id="wood" width="40" height="32" patternUnits="userSpaceOnUse">
-    <rect width="40" height="32" fill="#b98962"/>
-    <path d="M0 6 C6 4 10 9 16 6 S28 3 40 7 M0 15 C7 12 12 18 20 14 S30 12 40 17 M0 26 C6 22 12 28 19 24 S31 22 40 27" fill="none" stroke="#9e704e" stroke-width="1" opacity=".48"/>
-    <path d="M0 10 C4 8 8 11 12 10 M23 20 C27 18 31 21 36 19" fill="none" stroke="#d0a37b" stroke-width=".8" opacity=".5"/>
-    <rect x="39" width="1" height="32" fill="#80583e" opacity=".75"/>
-    <rect y="31" width="40" height="1" fill="#80583e" opacity=".75"/>
+    <rect width="40" height="32" fill="#ad8d6e"/>
+    <rect width="40" height="32" filter="url(#grain)" opacity=".3"/>
+    <path d="M0 6 C10 4 18 8 40 5 M0 16 C12 14 26 18 40 15 M0 26 C10 24 22 28 40 25" fill="none" stroke="#8a6a4d" stroke-width=".7" opacity=".22"/>
+    <path d="M0 11 C14 9 24 13 40 10 M0 21 C10 19 24 23 40 20" fill="none" stroke="#c4a585" stroke-width=".6" opacity=".25"/>
+    <rect x="39.5" width=".5" height="32" fill="#80603f" opacity=".25"/>
+    <rect y="31.5" width="40" height=".5" fill="#80603f" opacity=".25"/>
   </pattern>
 </defs>
 <rect width="240" height="160" fill="url(#wood)"/>

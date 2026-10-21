@@ -1,12 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="240" height="160" viewBox="0 0 240 160">
 <defs>
-  <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency=".055" numOctaves="3" seed="7"/><feColorMatrix values="0 0 0 0 .58  0 0 0 0 .52  0 0 0 0 .43  0 0 0 .22 0"/></filter>
-  <pattern id="p" width="80" height="54" patternUnits="userSpaceOnUse">
-    <rect width="80" height="54" fill="#bcae96"/>
-    <path d="M3 17 C18 8 28 12 39 7 S63 11 77 4 M8 39 C21 32 30 44 45 35 S66 31 78 39" fill="none" stroke="#d0c4ae" stroke-width="2" opacity=".45"/>
-    <circle cx="17" cy="27" r="1.3" fill="#948875"/><circle cx="58" cy="20" r="1.1" fill="#9d907d"/><circle cx="69" cy="46" r="1.4" fill="#d6c9b2"/>
-  </pattern>
+  <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="6"/>
+  </filter>
+  <filter id="stoneGrain" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency=".02" numOctaves="3" seed="6"/>
+    <feColorMatrix values="0 0 0 0 .45  0 0 0 0 .40  0 0 0 0 .33  0 0 0 .45 0"/>
+  </filter>
 </defs>
-<rect width="240" height="160" fill="url(#p)"/>
-<rect width="240" height="160" filter="url(#noise)" opacity=".28"/>
+<rect width="240" height="160" fill="#b6ab98"/>
+<ellipse cx="62" cy="46" rx="42" ry="24" fill="#a99d89" opacity=".36" filter="url(#soft)"/>
+<ellipse cx="158" cy="72" rx="46" ry="26" fill="#c0b5a2" opacity=".34" filter="url(#soft)"/>
+<ellipse cx="196" cy="128" rx="34" ry="20" fill="#a99d89" opacity=".3" filter="url(#soft)"/>
+<ellipse cx="84" cy="126" rx="38" ry="20" fill="#bdb2a0" opacity=".34" filter="url(#soft)"/>
+<ellipse cx="30" cy="88" rx="26" ry="16" fill="#c0b5a2" opacity=".28" filter="url(#soft)"/>
+<rect width="240" height="160" filter="url(#stoneGrain)" opacity=".08"/>
 </svg>

@@ -1,10 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="240" height="160" viewBox="0 0 240 160">
 <defs>
   <pattern id="tile" width="40" height="32" patternUnits="userSpaceOnUse">
-    <rect width="40" height="32" fill="#b8b5ad"/>
-    <rect x="1" y="1" width="38" height="30" fill="#c1beb5"/>
-    <path d="M1 1 H39 M1 31 H39 M1 1 V31 M39 1 V31" fill="none" stroke="#9e9b93" stroke-width="1" opacity=".55"/>
-    <path d="M3 6 H37 M4 11 H34 M3 23 H37" stroke="#d3d0c8" stroke-width="1" opacity=".22"/>
+    <rect width="40" height="32" fill="#b9b6ae"/>
+    <rect x=".5" y=".5" width="39" height="31" fill="#c1beb6"/>
+    <path d="M0 .5 H40 M.5 0 V32" fill="none" stroke="#aaa79f" stroke-width=".6" opacity=".4"/>
   </pattern>
 </defs>
 <rect width="240" height="160" fill="url(#tile)"/>
