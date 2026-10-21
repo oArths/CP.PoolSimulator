@@ -8,7 +8,6 @@ import Modal from "../modal";
 import { Field, SectionTitle, SummaryRow } from "../ui";
 import { usePoolStore } from "@/app/store/poolStore";
 import { quoteSchema } from "@/app/store/poolStore/quoteSchema";
-import { toast } from "react-toastify";
 import { X } from "lucide-react";
 
 const poolFormatComponents: Record<
@@ -60,6 +59,7 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
     const consent = usePoolStore((state) => state.consent);
 
     const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+    const [status, setStatus] = useState<{ error: boolean; text: string } | null>(null);
     const [attachments, setAttachments] = useState<File[]>([]);
 
     const decimals = measure === "Metros" ? 2 : 0;
@@ -90,11 +90,11 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                 if (typeof key === "string" && !errors[key]) errors[key] = issue.message;
             }
             setFormErrors(errors);
-            toast.error(Object.values(errors)[0] ?? "Revise os campos destacados.");
+            setStatus({ error: true, text: "Revise os campos destacados." });
             return;
         }
         setFormErrors({});
-        toast.success("Solicitação enviada! Nossa equipe entrará em contato.");
+        setStatus({ error: false, text: "Solicitação enviada! Nossa equipe entrará em contato." });
     };
 
     const lookupCep = async (value: string) => {
@@ -105,20 +105,20 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
             const response = await fetch(`https://viacep.com.br/ws/${digits}/json/`);
             const data = await response.json();
             if (data.erro) {
-                toast.error("CEP não encontrado.");
+                setFormErrors((errors) => ({ ...errors, cep: "CEP não encontrado." }));
                 return;
             }
             setField("state", data.uf ?? "");
             setField("city", data.localidade ?? "");
         } catch {
-            toast.error("Não foi possível buscar o CEP.");
+            setFormErrors((errors) => ({ ...errors, cep: "Não foi possível buscar o CEP." }));
         }
     };
 
     const addFiles = (selected: FileList | null) => {
         if (!selected) return;
         const next = [...attachments, ...Array.from(selected)];
-        if (next.length > 3) toast.error("Anexe no máximo 3 arquivos.");
+        if (next.length > 3) setStatus({ error: true, text: "Anexe no máximo 3 arquivos." });
         setAttachments(next.slice(0, 3));
     };
 
@@ -168,6 +168,9 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                                             <img
                                                 className="w-3 h-3 rounded-sm"
                                                 src={`./imgs/${deck?.imagePath}`}
+                                                alt=""
+                                                width={80}
+                                                height={46}
                                             />
                                             <p className="text-400-14 text-graphite">{deck?.name}</p>
                                         </span>
@@ -180,6 +183,9 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                                             <img
                                                 className="w-3 h-3 rounded-sm"
                                                 src={`./imgs/${display?.imagePath}`}
+                                                alt=""
+                                                width={80}
+                                                height={46}
                                             />
                                             <p className="text-400-14 text-graphite">
                                                 {display?.name}
@@ -393,6 +399,7 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                                                         </span>
                                                         <button
                                                             type="button"
+                                                            aria-label="Remover arquivo"
                                                             onClick={() => removeFile(index)}
                                                             className="shrink-0 rounded-full p-1 hover:bg-off-white"
                                                         >
@@ -434,7 +441,15 @@ export default function QuoteModal({ onClose }: { onClose: () => void }) {
                                 </div>
                             </div>
                         </fieldset>
-                        <div className="flex flex-col-reverse gap-5 mt-10 sm:flex-row items-center sm:mt-auto">
+                        {status && (
+                            <p
+                                role={status.error ? "alert" : "status"}
+                                className={`text-400-14 ${status.error ? "text-red-600" : "text-primary-blue"}`}
+                            >
+                                {status.text}
+                            </p>
+                        )}
+                        <div className="flex flex-col-reverse gap-5 mt-10 sm:flex-row items-center justify-between sm:mt-auto">
                             <button
                                 type="button"
                                 onClick={onClose}

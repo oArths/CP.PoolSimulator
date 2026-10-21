@@ -9,9 +9,9 @@ export function SectionTitle({
 }) {
     return (
         <span className="flex flex-col gap-4 w-full">
-            <h1 className="text-600-24 md:text-600-28 text-primary-blue">{title}</h1>
+            <h2 className="text-600-24 md:text-600-28 text-primary-blue">{title}</h2>
             {description && (
-                <h2 className="text-400-14 md:text-400-16 text-graphite">{description}</h2>
+                <p className="text-400-14 md:text-400-16 text-graphite">{description}</p>
             )}
         </span>
     );
@@ -51,7 +51,7 @@ export function Field({
         <span className="flex flex-col gap-1.5 items-start justify-center w-full">
             <label className="text-400-14 text-graphite">{label}</label>
             {children}
-            {error && <span className="text-400-12 text-red-500">{error}</span>}
+            {error && <span className="text-400-12 text-red-600">{error}</span>}
         </span>
     );
 }

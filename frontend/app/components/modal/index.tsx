@@ -8,7 +8,12 @@ interface ModalProps {
 
 export default function Modal(data: ModalProps): React.JSX.Element {
     return (
-        <main className=" fixed inset-0 z-20 flex items-center justify-center w-full h-full bg-graphite/15 backdrop-blur-[10px]">
+        <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Solicite seu orçamento"
+            className=" fixed inset-0 z-20 flex items-center justify-center w-full h-full bg-graphite/15 backdrop-blur-[10px]"
+        >
             <div
                 className={` relative py-6  flex z-30  flex-col w-[98%] md:w-[90%] max-h-[98dvh]  h-auto gap-8  bg-white rounded-2xl border overflow-y-auto border-border-gray shadow-md`}
                 style={data.style}
@@ -20,6 +25,7 @@ export default function Modal(data: ModalProps): React.JSX.Element {
                     </span>
 
                     <button
+                        aria-label="Fechar"
                         onClick={data.onClose}
                         className="flex rounded-full w-10 h-10 ml-10 md:ml-0 p-2.5 items-center justify-center bg-off-white border border-border-gray cursor-pointer"
                     >
@@ -29,6 +35,6 @@ export default function Modal(data: ModalProps): React.JSX.Element {
                 </div>
                 {data.Children}
             </div>
-        </main>
+        </div>
     )
 }

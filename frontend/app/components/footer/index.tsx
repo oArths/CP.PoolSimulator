@@ -9,15 +9,15 @@ export default function Footer() {
                 <span className="flex flex-col gap-4 items-start lg:items-start justify-center">
 
                     <h2 className="text-600-28 font-bold text-off-white">CP LIFE</h2>
-                    <p className="text-400-12 md:text-600-14  text-off-white">Proteção e elegância para piscinas,<br /> pets e ambientes de lazer desde 2007.</p>
+                    <p className="text-400-12 md:text-400-14  text-off-white">Proteção e elegância para piscinas,<br /> pets e ambientes de lazer desde 2007.</p>
                     <div className="flex flex-row gap-3 justify-between md:justify-start w-full">
-                        <button className="rounded-lg p-2.5 bg-off-white/7">
+                        <button aria-label="Facebook" className="rounded-lg p-2.5 bg-off-white/7">
                             <FacebookLogo className="w-5 h-5 text-off-white" />
                         </button>
-                        <button className="rounded-lg p-2.5 bg-off-white/7">
+                        <button aria-label="Instagram" className="rounded-lg p-2.5 bg-off-white/7">
                             <InstagramLogo className="w-5 h-5 text-off-white" />
                         </button>
-                        <button className="rounded-lg p-2.5 bg-off-white/7">
+                        <button aria-label="YouTube" className="rounded-lg p-2.5 bg-off-white/7">
                             <YoutubeLogo className="w-5 h-5 text-off-white" />
                         </button>
                     </div>
@@ -26,23 +26,23 @@ export default function Footer() {
 
                     <span className="flex flex-col items-center md:items-start gap-3.5 w-full md:w-40">
                         <h3 className="text-400-12 md:text-600-14  cursor-pointer text-off-white">Navegação</h3>
-                        <p className="text-400-12 md:text-600-14  cursor-pointer text-off-white/70">Produtos</p>
-                        <p className="text-400-12 md:text-600-14  cursor-pointer text-off-white/70">Soluções</p>
-                        <p className="text-400-12 md:text-600-14  cursor-pointer text-off-white/70">Projetos</p>
+                        <p className="text-400-12 md:text-400-14  cursor-pointer text-aqua-light">Produtos</p>
+                        <p className="text-400-12 md:text-400-14  cursor-pointer text-aqua-light">Soluções</p>
+                        <p className="text-400-12 md:text-400-14  cursor-pointer text-aqua-light">Projetos</p>
 
                     </span>
                     <span className="flex flex-col items-center md:items-start gap-3.5 w-full md:w-40">
                         <h3 className="text-400-12 md:text-600-14  cursor-pointer text-off-white">Contato</h3>
-                        <p className="text-400-12 md:text-600-14  cursor-pointer text-off-white/70">WhatsApp</p>
-                        <p className="text-400-12 md:text-600-14  cursor-pointer text-off-white/70">Telefone</p>
-                        <p className="text-400-12 md:text-600-14  cursor-pointer text-off-white/70">E-mail</p>
+                        <p className="text-400-12 md:text-400-14  cursor-pointer text-aqua-light">WhatsApp</p>
+                        <p className="text-400-12 md:text-400-14  cursor-pointer text-aqua-light">Telefone</p>
+                        <p className="text-400-12 md:text-400-14  cursor-pointer text-aqua-light">E-mail</p>
 
                     </span>
                     <span className="flex flex-col  items-center md:items-start gap-3.5 w-full sm:w-40">
 
                         <h3 className="text-400-12 md:text-600-14 cursor-pointer text-off-white">Institucional</h3>
-                        <p className="text-400-12 md:text-600-14  cursor-pointer text-off-white/70">A CP Life</p>
-                        <p className="text-400-12 md:text-600-14 cursor-pointer text-off-white/70">Blog</p>
+                        <p className="text-400-12 md:text-400-14  cursor-pointer text-aqua-light">A CP Life</p>
+                        <p className="text-400-12 md:text-400-14 cursor-pointer text-aqua-light">Blog</p>
 
                     </span>
 

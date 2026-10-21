@@ -12,8 +12,6 @@ import { STEPS } from "./steps";
 import { SectionTitle, SelectableCard } from "../ui";
 import { usePoolStore } from "@/app/store/poolStore";
 import QuoteModal from "../quoteModal";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const poolFormatComponents: Record<
     string,
@@ -142,9 +140,9 @@ export default function PoolSimulator() {
                                                 {Icon ? (
                                                     <Icon className="fill-transparent stroke-primary-blue w-[90%]" />
                                                 ) : null}
-                                                <h4 className="text-400-14 text-graphite">
+                                                <p className="text-400-14 text-graphite">
                                                     {item.name}
-                                                </h4>
+                                                </p>
                                             </SelectableCard>
                                         );
                                     })}
@@ -245,9 +243,9 @@ export default function PoolSimulator() {
                                             onClick={() => setField("surrounded", item)}
                                             className="flex flex-col items-start gap-2.5 justify-center"
                                         >
-                                            <h2 className="text-600-22 text-primary-blue">
+                                            <p className="text-600-22 text-primary-blue">
                                                 {item.type}
-                                            </h2>
+                                            </p>
                                             <p className="text-400-16 text-neutral-gray">
                                                 {item.description}
                                             </p>
@@ -279,9 +277,9 @@ export default function PoolSimulator() {
                                                             <Icon className="fill-transparent stroke-primary-blue" />
                                                         ) : null}
                                                     </p>
-                                                    <h2 className="text-400-14 text-primary-blue font-semibold text-center">
+                                                    <p className="text-400-14 text-primary-blue font-semibold text-center">
                                                         {item.type}
-                                                    </h2>
+                                                    </p>
                                                 </SelectableCard>
                                             );
                                         })}
@@ -319,7 +317,7 @@ export default function PoolSimulator() {
                                                 className="flex flex-col items-center gap-2.5 justify-center"
                                             >
                                                 <figure className="w-20 h-fit">
-                                                    <img src={`./imgs/${item.imagePath}`} />
+                                                    <img src={`./imgs/${item.imagePath}`} alt="" width={80} height={46} className="w-full h-auto" />
                                                 </figure>
                                                 <p className="text-400-16 text-neutral-gray">
                                                     {item.name}
@@ -347,7 +345,7 @@ export default function PoolSimulator() {
                                                 className="flex flex-col items-center gap-2.5 justify-center"
                                             >
                                                 <figure className="w-20 h-fit">
-                                                    <img src={`./imgs/${item.imagePath}`} />
+                                                    <img src={`./imgs/${item.imagePath}`} alt="" width={80} height={46} className="w-full h-auto" />
                                                 </figure>
                                                 <p className="text-400-16 text-neutral-gray">
                                                     {item.name}
@@ -424,7 +422,6 @@ export default function PoolSimulator() {
 
                 {isQuoteOpen && <QuoteModal onClose={() => setIsQuoteOpen(false)} />}
             </section>
-            <ToastContainer position="top-right" autoClose={4000} />
         </>
     );
 }
