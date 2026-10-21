@@ -14,7 +14,7 @@ interface PoolStoreInterface {
   gate: PoolGate | null;
   deck: PoolDeck | null;
   display: PoolDisplay | null;
-  actualStep: "Formato" | "Medidas" | "Produto" | "Configuração" | "Estimativa";
+  actualStep: "Formato" | "Medidas" | "Produto" | "Configuração";
   service: "Produto" | "Produto + Instalçao";
   fullName: string;
   whatsapp: string;
@@ -58,7 +58,7 @@ export const usePoolStore = create<PoolStoreInterface>()(
     }),
     {
       name: "session",
-      version: 1,
+      version: 2,
       migrate: () => ({}) as PoolStoreInterface,
     },
   ),
